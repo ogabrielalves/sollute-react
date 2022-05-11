@@ -1,0 +1,59 @@
+.container{        
+    /* background-color: aqua;        
+    width: 100vw; */
+    /* height: 100vh; */
+    display: flex;
+    flex-direction: row;
+}
+
+body {
+    background-color: #DAD2F1;
+}
+
+.containerText{
+    /* background-color: red; */
+    position: absolute;
+    padding-left: 60px;
+    top: 40%;
+    width: 50vw;    
+}
+
+.containerText h1 {    
+    color: #3A3A52;
+    font-size: 4rem;
+    width: 10%;    
+}
+
+.containerText p {
+    width: 60%;
+}
+
+.containerImage {
+    /* background-color: blue; */
+    position: absolute;
+    right: 0;
+    bottom: 12%;
+}
+
+.containerImage img {
+    width: 85%;
+}
+
+@media (max-width:1325px) {
+    .containerImage img {
+        width: 90%;
+        /* background-color: red; */  
+      }
+  .containerImage{
+      bottom: 10%;
+      /* background-color: blueviolet; */
+      display: flex;
+      justify-content: center;
+      width: 40vw;
+  }
+  
+  .containerText{
+      top: 30%;
+      width: 60vw;
+     }
+  }
