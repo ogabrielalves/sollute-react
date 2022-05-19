@@ -82,7 +82,7 @@ function DashboardContent(props) {
     },
     {
         title: 'Funcionário',
-        link: '',
+        link: '/dashboard/employees',
         icon: <PersonIcon />
     },
     {
