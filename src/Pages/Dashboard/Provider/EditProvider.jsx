@@ -1,10 +1,15 @@
 import React from 'react';
+import axios from 'axios';
 import Dashboard from '../../../Components/Dashboard/Dashboard';
+import { useNavigate, useParams } from 'react-router-dom';
 import { TextField, Grid, Button } from '@mui/material';
+import useAuth from '../../../Hooks/useAuth';
+import { notify } from '../../../Components/Notify/Notify';
 
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 // Style
 const styleGridButton = {
@@ -16,6 +21,25 @@ const styleGridButton = {
 
 
 function EditProvider() {
+
+    const { providerId } = useParams();
+
+    const navigate = useNavigate();
+    
+    const { empresa } = useAuth();
+
+    function deleteFornecedor() {
+        axios.delete(`http://localhost:8080/empresas/deletar-fornecedor/${providerId}/${empresa?.id}`)
+            .then((res) => {
+                if (res.status === 200) {
+                    notify('Fornecedor excluido com sucesso!', 'sucess')
+                }
+
+            }).catch((err) => {
+                notify('Não foi possivel excluir o fornecedor.', 'error')
+            });
+    }
+
     return (  
         <Dashboard>
             <Grid container spacing={3}>
@@ -55,9 +79,19 @@ function EditProvider() {
                     <Grid item xs={12} md={3}>
                         <Button
                             fullWidth
+                            variant="contained"
+                            onClick={() => { deleteFornecedor() }}
+                            startIcon={<DeleteIcon />}
+                        >
+                            Excluir
+                        </Button>
+                    </Grid>
+                    <Grid item xs={12} md={3}>
+                        <Button
+                            fullWidth
                             variant="outlined"
                             startIcon={<ArrowBackIcon />}
-                            onClick={() => window.location.href = "/dashboard/provider"}
+                            onClick={() => navigate("/dashboard/provider")}
                         >
                             Voltar
                         </Button>

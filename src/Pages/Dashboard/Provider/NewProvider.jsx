@@ -22,26 +22,35 @@ function NewProvider() {
     const { empresa } = useAuth();
 
     const [nomeFornecedor, setNomeFornecedor] = useState('');
-    const [idFornecedor, setIdFornecedor] = useState('');
     const [telefone, setTelefone] = useState('');
     const [nomeProduto, setNomeProduto] = useState('');
     const [qtdFornecida, setQtdFornecida] = useState('');
-    
-   async function PostProvider() {
+
+    async function PostProvider() {
 
         const service = new ProviderService()
-        if(await service.postFuncionarios({
-            "fkEmpresa": empresa?.idEmpresa,
-            "IdFornecedor": idFornecedor,
+        if (await service.postFornecedores({
+            "idFornecedor": 0,
+            "fkEmpresa": {
+                "email": empresa.email,
+                "senha": empresa.senha,
+                "nomeFantasia": empresa.nomeFantasia,
+                "razaoSocial": empresa.razaoSocial,
+                "cnpj": empresa.cnpj,
+                "qtdProdutosVendidos": empresa.qtdProdutosVendidos,
+                "totalProdutosVendidos": empresa.totalProdutosVendidos,
+                "autenticado": empresa.autenticado,
+                "id": empresa.id
+            },
             "nomeFornecedor": nomeFornecedor,
-            "telefone": telefone,
+            "telefoneFornecedor": telefone,
             "nomeProduto": nomeProduto,
-            "qtdFornecida": qtdFornecida
-        },  empresa?.idEmpresa)){
+            "qtd": qtdFornecida
+        }, empresa?.id)) {
             navigate(-1)
         }
     }
-    
+
     return (
         <Dashboard>
             <form onSubmit={(evt) => {
@@ -55,21 +64,18 @@ function NewProvider() {
                     <Grid item xs={12}>
                         <h2>Dados Gerais</h2>
                     </Grid>
-                    <Grid item xs={12} md={4}>
+                    <Grid item xs={12} md={6}>
                         <TextField required fullWidth id="outlined-basic" label="Nome do fornecedor" variant="outlined" onChange={(evt) => setNomeFornecedor(evt.target.value)} />
-                    </Grid>
-                    <Grid item xs={12} md={4}>
-                        <TextField required fullWidth id="outlined-basic" label="Id do fornecedor" variant="outlined" onChange={(evt) => setIdFornecedor(evt.target.value)} />
-                    </Grid>
-                    <Grid item xs={12} md={4}>
+                    </Grid>                    
+                    <Grid item xs={12} md={6}>
                         <TextField required fullWidth id="outlined-basic" label="Telefone do fornecedor" variant="outlined" onChange={(evt) => setTelefone(evt.target.value)} />
                     </Grid>
-                    <Grid item xs={12} md={4}>
+                    <Grid item xs={12} md={6}>
                         <TextField required fullWidth id="outlined-basic" label="Nome do produto" variant="outlined" onChange={(evt) => setNomeProduto(evt.target.value)} />
                     </Grid>
-                    <Grid item xs={12} md={4}>
+                    <Grid item xs={12} md={6}>
                         <TextField required fullWidth id="outlined-basic" label="Quantidade fonecida" variant="outlined" onChange={(evt) => setQtdFornecida(evt.target.value)} />
-                    </Grid>                    
+                    </Grid>
 
                     <Grid container spacing={3} sx={styleGridButton}>
                         <Grid item xs={12} md={3}>
@@ -100,9 +106,9 @@ function NewProvider() {
             </form>
         </Dashboard>
     );
-    
-   
-  
+
+
+
 }
 
 export default NewProvider;

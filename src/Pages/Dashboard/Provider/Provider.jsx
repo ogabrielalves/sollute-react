@@ -1,7 +1,7 @@
 import React from 'react';
 import Dashboard from '../../../Components/Dashboard/Dashboard';
 import { TextField, Grid, Button } from '@mui/material';
-
+import { useNavigate } from 'react-router-dom';
 
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import EditIcon from '@mui/icons-material/Edit';
@@ -16,7 +16,10 @@ const center = {
 }
 
 function Provider() {
-    return ( <>
+
+    const navigate = useNavigate();
+
+    return (<>
         <Dashboard>
             <Grid container spacing={3} sx={center}>
                 <Grid item xs={12} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -32,17 +35,12 @@ function Provider() {
                 <Grid item xs={12} md={4}>
                     <TextField fullWidth id="outlined-basic" label="Nome do produto" variant="outlined" />
                 </Grid>
-
-                <Grid item xs={12}>
-                    <ProviderList />
-                </Grid>
-
                 <Grid item xs={12} md={3}>
                     <Button
                         fullWidth
                         variant="contained"
                         startIcon={<AddCircleIcon />}
-                        onClick={() => window.location.href = "/dashboard/new-provider"}
+                        onClick={() => navigate("/dashboard/new-provider")}
                     >
                         Novo fornecedor
                     </Button>
@@ -52,22 +50,15 @@ function Provider() {
                         fullWidth
                         variant="contained"
                         startIcon={<EditIcon />}
-                        onClick={() => window.location.href = "/dashboard/edit-provider"}
+                        onClick={() => navigate("/dashboard/edit-provider")}
                     >
                         Editar Fornecedor
                     </Button>
-                </Grid>
-                <Grid item xs={12} md={3}>
-                    <Button
-                        fullWidth
-                        variant="contained"
-                        onClick={() => window.location.href = "/dashboard/delete-provider"}
-                        endIcon={<DeleteIcon />}
-                    >
-                        Excluir Fornecedor
-                    </Button>
-                </Grid>
+                </Grid>             
 
+                <Grid item xs={12}>
+                    <ProviderList />
+                </Grid>
             </Grid>
 
 
