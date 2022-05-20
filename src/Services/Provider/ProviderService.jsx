@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { notify } from '../../Components/Notify/Notify';
 
-const urlBase = 'http://localhost:8080/Fornecedor';
+const urlBase = 'http://localhost:8080/empresas';
 const headers = {
   'Content-Type': 'application/json'
 };
@@ -9,7 +9,7 @@ const headers = {
 class ProviderService {
 
     async getFornecedores(idEmpresa) {
-      return await axios.get(`${urlBase}/listar-fornecedor/${idEmpresa}`, {
+      return await axios.get(`${urlBase}/listar-fornecedores/${idEmpresa}`, {
         headers: headers
       })
         .then(res => res.data)

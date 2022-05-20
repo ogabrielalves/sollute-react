@@ -2,9 +2,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { AuthContext } from "../../../Context/AuthContext";
 import ProviderService from '../../../Services/Provider/ProviderService';
+import { useNavigate } from 'react-router-dom';
 const service = new ProviderService();
 
-function ProviderList(props) {
+function ProviderList() {
+    const navigate = useNavigate();
+
     const { empresa } = useContext(AuthContext)
 
     const [pageSize, setPageSize] = useState(10)
@@ -18,7 +21,7 @@ function ProviderList(props) {
 
         getData()
         async function getData() {
-            const apiResponse = await service.getProdutos(empresa?.idEmpresa)
+            const apiResponse = await service.getFornecedores(empresa?.id)
             console.log(apiResponse)
             setItems(apiResponse)
         }
@@ -32,7 +35,11 @@ function ProviderList(props) {
             autoWidth={true}
             rowHeight={70}
             columns={columns}
-            getRowId={(row) => row.codigo}
+            getRowId={(row) => row.idFornecedor}
+            onCellClick={(params) => {
+                console.log(params.row)
+                navigate(`/dashboard/edit-provider/${params.row.idFornecedor}`)
+            }}
             rows={items}
             page={page}
             pageSize={pageSize}
@@ -48,28 +55,28 @@ function ProviderList(props) {
 const columns = [
     {
         field: "idFornecedor",
-        headerName: "ID do fornecedor",
-        width: 290
+        headerName: "ID",
+        width: 90
     },
     {
         field: "nomeFornecedor",
-        headerName: "Nome do fornecedor",
-        width: 290
+        headerName: "Nome do Fornecedor",
+        width: 390
     },
     {
-        field: "telefone",
-        headerName: "Telefone do fornecedor",
-        width: 200
+        field: "teleftelefoneFornecedorone",
+        headerName: "Telefone do Fornecedor",
+        width: 300
     },
     {
         field: "nomeProduto",
-        headerName: "Nome do produto",
-        width: 220
+        headerName: "Nome do Produto",
+        width: 320
     },
     {
-        field: "qtdFornecida",
-        headerName: "Quantidade fornecida",
-        width: 220
+        field: "qtd",
+        headerName: "Quantidade Fornecida",
+        width: 320
     }
 
 ];

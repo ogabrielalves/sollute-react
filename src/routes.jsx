@@ -18,7 +18,6 @@ import DeleteEmployee from "./Pages/Dashboard/Employees/DeleteEmployee";
 import EditEmployee from "./Pages/Dashboard/Employees/EditEmployee";
 import Provider from "./Pages/Dashboard/Provider/Provider";
 import NewProvider from "./Pages/Dashboard/Provider/NewProvider";
-import DeleteProvider from "./Pages/Dashboard/Provider/DeleteProvider";
 import EditProvider from "./Pages/Dashboard/Provider/EditProvider";
 import Client from "./Pages/Dashboard/Client/Client";
 import NewClient from "./Pages/Dashboard/Client/NewClient";
@@ -40,7 +39,6 @@ function Rotas() {
         <Route exact path="/dashboard/product" element={<Product />} />
         <Route exact path="/dashboard/new-product" element={<NewProduct />} />
         <Route exact path="/dashboard/edit-product/:productId" element={<EditProduct />} />
-        <Route exact path="/dashboard/delete-product" element={<DeleteProduct />} />
         
         <Route exact path="/dashboard/employees" element={<Employees />} />
         <Route exact path="/dashboard/new-employee" element={<NewEmployee />} />
@@ -54,8 +52,7 @@ function Rotas() {
 
         <Route exact path="/dashboard/provider" element={<Provider />} />
         <Route exact path="/dashboard/new-provider" element={<NewProvider />} />
-        <Route exact path="/dashboard/edit-provider" element={<EditProvider />} />
-        <Route exact path="/dashboard/delete-provider" element={<DeleteProvider />} />
+        <Route exact path="/dashboard/edit-provider/:providerId" element={<EditProvider />} />
       </Routes>
     </Router>
   );
