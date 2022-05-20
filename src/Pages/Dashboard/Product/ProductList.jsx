@@ -2,9 +2,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import ProductService from '../../../Services/Product/ProductService';
 import { AuthContext } from "../../../Context/AuthContext";
+import { useNavigate } from 'react-router-dom';
+
 const service = new ProductService()
 
-function ProductList(props) {
+function ProductList() {
+    const navigate = useNavigate();
 
     const { empresa } = useContext(AuthContext)
 
@@ -16,16 +19,16 @@ function ProductList(props) {
     useEffect(() => {
 
         if (!empresa) return null;
-
+        console.log(empresa)
         getData()
         async function getData() {
-            const apiResponse = await service.getProdutos(empresa?.idEmpresa)
+            const apiResponse = await service.getProdutos(empresa?.id)
             console.log(apiResponse)
             setItems(apiResponse)
         }
     }, [empresa])
 
-    return (
+    return (           
         <DataGrid
             sortable={true}
             filter={true}
@@ -34,6 +37,10 @@ function ProductList(props) {
             rowHeight={70}
             columns={columns}
             getRowId={(row) => row.codigo}
+            onCellClick={(params) => {
+                console.log(params.row)
+                navigate(`/dashboard/edit-product/${params.row.codigo}`)
+            }}
             rows={items}
             page={page}
             pageSize={pageSize}
@@ -41,8 +48,8 @@ function ProductList(props) {
             onPageChange={(newPage) => setPage(newPage)}
 
             rowsPerPageOptions={[10, 20, 30]}
-            autoHeight={true} >
-        </DataGrid>
+            autoHeight={true} />           
+      
     )
 }
 

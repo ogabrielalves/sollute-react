@@ -1,12 +1,10 @@
 import React from 'react';
 import Dashboard from '../../../Components/Dashboard/Dashboard';
 import { TextField, Grid, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 import SearchIcon from '@mui/icons-material/Search';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import ProductList from './ProductList';
 
@@ -17,6 +15,9 @@ const center = {
 }
 
 function Product() {
+
+    const navigate = useNavigate();
+
     return (
         <Dashboard>
             <Grid container spacing={3} sx={center}>
@@ -33,7 +34,7 @@ function Product() {
                 <Grid item xs={12} md={4}>
                     <TextField fullWidth id="outlined-basic" label="Marca do produto" variant="outlined" />
                 </Grid>
-                <Grid item xs={12} md={3}>
+                <Grid item xs={12} md={4}>
                     <Button
                         fullWidth
                         variant="contained"
@@ -42,51 +43,20 @@ function Product() {
                         Pesquisar
                     </Button>
                 </Grid>
-                <Grid item xs={12} md={3}>
+                <Grid item xs={12} md={4}>
                     <Button
                         fullWidth
                         variant="contained"
                         startIcon={<AddCircleIcon />}
-                        onClick={() => window.location.href = "/dashboard/new-product"}
+                        onClick={() => navigate("/dashboard/new-product")}
                     >
                         Novo Produto
                     </Button>
-                </Grid>
-                <Grid item xs={12} md={3}>
-                    <Button
-                        fullWidth
-                        variant="contained"
-                        startIcon={<EditIcon />}
-                        onClick={() => window.location.href = "/dashboard/edit-product"}
-                    >
-                        Editar Produto
-                    </Button>
-                </Grid>
-                <Grid item xs={12} md={3}>
-                    <Button
-                        fullWidth
-                        variant="contained"
-                        onClick={() => window.location.href = "/dashboard/delete-product"}
-                        endIcon={<DeleteIcon />}
-                    >
-                        Excluir Produto
-                    </Button>
-                </Grid>
+                </Grid>              
                 <Grid item xs={12}>
                     <ProductList />
                 </Grid>
-                <Grid item xs={12} md={6}>
-                    <Button
-                        fullWidth
-                        variant="contained"
-                        startIcon={<AddShoppingCartIcon />}
-                    >
-                        Adicionar ao carrinho
-                    </Button>
-                </Grid>
             </Grid>
-
-
         </Dashboard>
     );
 }
