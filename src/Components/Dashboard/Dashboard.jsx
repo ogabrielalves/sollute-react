@@ -27,14 +27,12 @@ import InventoryIcon from '@mui/icons-material/Inventory';
 import GroupIcon from '@mui/icons-material/Group';
 import HomeIcon from '@mui/icons-material/Home';
 import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
-import LogoutIcon from '@mui/icons-material/Logout';
 import MenuIcon from '@mui/icons-material/Menu';
 
 import { Link } from 'react-router-dom'
 
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { AppBar, Typography } from '@mui/material';
-import { AuthContext } from '../../Context/AuthContext';
 
 class Dashboard extends React.Component {
     render() {
@@ -82,16 +80,16 @@ function DashboardContent(props) {
     },
     {
         title: 'Funcionário',
-        link: '',
+        link: '/dashboard/employees',
         icon: <PersonIcon />
     },
     {
         title: 'Fornecedores',
-        link: '',
+        link: '/dashboard/provider',
         icon: <SupervisedUserCircleIcon />
     }, {
         title: 'Clientes',
-        link: '',
+        link: '/dashboard/client',
         icon: <GroupIcon />
     }];
 
