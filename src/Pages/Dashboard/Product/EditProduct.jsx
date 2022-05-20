@@ -1,9 +1,14 @@
 import React from 'react';
+import axios from 'axios';
 import Dashboard from '../../../Components/Dashboard/Dashboard';
+import useAuth from '../../../Hooks/useAuth';
 import { TextField, Grid, Button } from '@mui/material';
+import { useNavigate, useParams } from 'react-router-dom';
+import { notify } from '../../../Components/Notify/Notify';
 
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import DeleteIcon from '@mui/icons-material/Delete';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 // Style
@@ -14,8 +19,26 @@ const styleGridButton = {
     marginTop: '20px'
 }
 
-
 function EditProduct() {
+
+    const { productId } = useParams();
+
+    const navigate = useNavigate();
+
+    const { empresa } = useAuth();
+
+    function deleteProduto() {
+        axios.delete(`http://localhost:8080/empresas/deletar-produto/${productId}/${empresa?.id}`)
+            .then((res) => {
+                if (res.status === 200) {
+                    notify('Produto deletado com sucesso!', 'sucess')
+                }
+
+            }).catch((err) => {
+                notify('Produto não encontrado!', 'error')
+            });
+    }
+
     return (
         <Dashboard>
             <Grid container spacing={3}>
@@ -23,28 +46,6 @@ function EditProduct() {
                     <LocalOfferIcon style={{ marginRight: '20px' }} />
                     <h1>Editar Produto</h1>
                 </Grid>
-                <Grid item xs={12}>
-                    <h2>Dados Gerais</h2>
-                </Grid>
-                <Grid item xs={12} md={4}>
-                    <TextField fullWidth id="outlined-basic" label="Nome do produto" variant="outlined" />
-                </Grid>
-                <Grid item xs={12} md={4}>
-                    <TextField fullWidth id="outlined-basic" label="Código do produto" variant="outlined" />
-                </Grid>
-                <Grid item xs={12} md={4}>
-                    <TextField fullWidth id="outlined-basic" label="Marca do produto" variant="outlined" />
-                </Grid>
-                <Grid item xs={12} md={4}>
-                    <TextField fullWidth id="outlined-basic" label="Categoria" variant="outlined" />
-                </Grid>
-                <Grid item xs={12} md={4}>
-                    <TextField fullWidth id="outlined-basic" label="Peso" variant="outlined" />
-                </Grid>
-                <Grid item xs={12} md={4}>
-                    <TextField fullWidth id="outlined-basic" label="Validade" variant="outlined" />
-                </Grid>
-
                 <Grid item xs={12}>
                     <h2>Estoque</h2>
                 </Grid>
@@ -82,9 +83,19 @@ function EditProduct() {
                     <Grid item xs={12} md={3}>
                         <Button
                             fullWidth
+                            variant="contained"
+                            onClick={() => { deleteProduto() }}
+                            startIcon={<DeleteIcon />}
+                        >
+                            Excluir
+                        </Button>
+                    </Grid>
+                    <Grid item xs={12} md={3}>
+                        <Button
+                            fullWidth
                             variant="outlined"
                             startIcon={<ArrowBackIcon />}
-                            onClick={() => window.location.href = "/dashboard/product"}
+                            onClick={() => navigate("/dashboard/product")}
                         >
                             Voltar
                         </Button>

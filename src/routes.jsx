@@ -11,7 +11,6 @@ import Product from './Pages/Dashboard/Product/Product';
 import NewProduct from './Pages/Dashboard/Product/NewProduct';
 import EditProduct from './Pages/Dashboard/Product/EditProduct';
 import HomeDashboard from './Pages/Dashboard/Home/Home';
-import DeleteProduct from "./Pages/Dashboard/Product/DeleteProduct";
 import NotFound from "./Pages/NotFound/NotFound";
 
 function Rotas() {
@@ -27,8 +26,7 @@ function Rotas() {
 
         <Route exact path="/dashboard/product" element={<Product />} />
         <Route exact path="/dashboard/new-product" element={<NewProduct />} />
-        <Route exact path="/dashboard/edit-product" element={<EditProduct />} />
-        <Route exact path="/dashboard/delete-product" element={<DeleteProduct />} />
+        <Route exact path="/dashboard/edit-product/:productId" element={<EditProduct />} />
         <Route exact path="/dashboard" element={<HomeDashboard />} />
       </Routes>
     </Router>
