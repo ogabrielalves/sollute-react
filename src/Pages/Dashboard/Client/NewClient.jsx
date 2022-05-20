@@ -21,19 +21,26 @@ function NewClient() {
 
     const { empresa } = useAuth();
 
-    const [idCliente, setIdCliente] = useState('');
     const [telefone, setTelefone] = useState('');
     const [nomeCliente, setNomeCliente] = useState('');
     
-   async function PostClient() {
-
+    async function postClient() {
         const service = new ClientService()
-        if(await service.postFuncionarios({
-            "fkEmpresa": empresa?.idEmpresa,
-            "IdFornecedor": idCliente,
-            "nomeFornecedor": nomeCliente,
-            "telefone": telefone
-        },  empresa?.idEmpresa)){
+        if (await service.postCliente({
+            "empresa": {
+                "email": empresa.email,
+                "senha": empresa.senha,
+                "nomeFantasia": empresa.nomeFantasia,
+                "razaoSocial": empresa.razaoSocial,
+                "cnpj": empresa.cnpj,
+                "qtdProdutosVendidos": empresa.qtdProdutosVendidos,
+                "totalProdutosVendidos": empresa.totalProdutosVendidos,
+                "autenticado": empresa.autenticado,
+                "id": empresa.id
+            },
+            "nomeCliente": nomeCliente,
+            "telefoneCliente": telefone
+        }, empresa?.id)) {
             navigate(-1)
         }
     }
@@ -52,9 +59,6 @@ function NewClient() {
                         <h2>Dados Gerais</h2>
                     </Grid>
                     <Grid item xs={12} md={4}>
-                        <TextField required fullWidth id="outlined-basic" label="ID do cliente" variant="outlined" onChange={(evt) => setIdCliente(evt.target.value)} />
-                    </Grid>
-                    <Grid item xs={12} md={4}>
                         <TextField required fullWidth id="outlined-basic" label="Nome do cliente" variant="outlined" onChange={(evt) => setNomeCliente(evt.target.value)} />
                     </Grid>
                     <Grid item xs={12} md={4}>
@@ -69,7 +73,7 @@ function NewClient() {
                                 variant="contained"
                                 startIcon={<CheckCircleIcon />}
                                 onClick={() => {
-                                    PostClient()
+                                    postClient()
                                 }}
                             >
                                 Criar Cliente

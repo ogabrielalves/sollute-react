@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { notify } from '../../Components/Notify/Notify';
 
-const urlBase = 'http://localhost:8080/cliente';
+const urlBase = 'http://localhost:8080/empresas';
 const headers = {
   'Content-Type': 'application/json'
 };
@@ -10,7 +10,7 @@ const headers = {
 class ClientService {
 
   async getCliente(idEmpresa) {
-    return await axios.get(`${urlBase}/listar-cliente/${idEmpresa}`, {
+    return await axios.get(`${urlBase}/listar-clientes/${idEmpresa}`, {
       headers: headers
     })
       .then(res => res.data)
@@ -20,15 +20,15 @@ class ClientService {
   }
 
   async postCliente(obj, idEmpresa) {
-    return await axios.post(`${urlBase}/criar-cliente/${idEmpresa}`,
+    return await axios.post(`${urlBase}/adicionar-cliente/${idEmpresa}`,
       obj
     )
       .then(res => {
-        notify('Produto criado com sucesso!', 'sucess')
+        notify('Cliente cadastrado com sucesso!', 'sucess')
         return res.data
       })
       .catch((err) => {
-        notify('Erro ao criar produto.', 'error')
+        notify('Erro ao cadastrar o cliente.', 'error')
         console.error(`Request Failed ${err}`);
         return null
       });

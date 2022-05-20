@@ -4,7 +4,7 @@ import { AuthContext } from "../../../Context/AuthContext";
 import ClientService from '../../../Services/Client/ClientService';
 const service = new ClientService();
 
-function ClientList(props) {
+function ClientList() {
     const { empresa } = useContext(AuthContext)
 
     const [pageSize, setPageSize] = useState(10)
@@ -18,7 +18,7 @@ function ClientList(props) {
 
         getData()
         async function getData() {
-            const apiResponse = await service.getProdutos(empresa?.idEmpresa)
+            const apiResponse = await service.getCliente(empresa?.id)
             console.log(apiResponse)
             setItems(apiResponse)
         }
@@ -32,7 +32,7 @@ function ClientList(props) {
             autoWidth={true}
             rowHeight={70}
             columns={columns}
-            getRowId={(row) => row.codigo}
+            getRowId={(row) => row.idCliente}
             rows={items}
             page={page}
             pageSize={pageSize}
@@ -47,17 +47,12 @@ function ClientList(props) {
 
 const columns = [
     {
-        field: "idCliente",
-        headerName: "ID do Cliente",
-        width: 290
-    },
-    {
         field: "nomeCliente",
         headerName: "Nome do cliente",
         width: 290
     },
     {
-        field: "telefone",
+        field: "telefoneCliente",
         headerName: "Telefone do cliente",
         width: 200
     }
