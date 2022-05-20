@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Dashboard from '../../../Components/Dashboard/Dashboard';
 import { TextField, Grid, Button } from '@mui/material';
 import ProductService from '../../../Services/Product/ProductService';
@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import useAuth from '../../../Hooks/useAuth';
+import { AuthContext } from "../../../Context/AuthContext";
 
 // Style
 const styleGridButton = {
@@ -17,12 +17,11 @@ const styleGridButton = {
     marginTop: '20px'
 }
 
-
 function NewProduct() {
 
     const navigate = useNavigate();
 
-    const { empresa } = useAuth();
+    const { empresa } = useContext(AuthContext)
 
     const [nome, setNome] = useState('');
     const [codigo, setCodigo] = useState('');
@@ -35,12 +34,23 @@ function NewProduct() {
     const [precoCompra, setPrecoCompra] = useState('');
     const [precoVenda, setPrecoVenda] = useState('');
     const [tamanho, setTamanho] = useState('');
+    console.log(empresa.id)
 
     async function postProduto() {
-
         const service = new ProductService()
-        if(await service.postProdutos({
-            "fkEmpresa": empresa?.idEmpresa,
+        if (await service.postProdutos({
+            "empresa": {
+                "email": empresa.email,
+                "senha": empresa.senha,
+                "nomeFantasia": empresa.nomeFantasia,
+                "razaoSocial": empresa.razaoSocial,
+                "cnpj": empresa.cnpj,
+                "qtdProdutosVendidos": empresa.qtdProdutosVendidos,
+                "totalProdutosVendidos": empresa.totalProdutosVendidos,
+                "autenticado": empresa.autenticado,
+                "id": empresa.id
+            },
+            "fkEmpresa": empresa?.id,
             "codigo": codigo,
             "nome": nome,
             "marca": marca,
@@ -49,12 +59,12 @@ function NewProduct() {
             "peso": peso,
             "precoCompra": precoCompra,
             "precoVenda": precoVenda,
-            "estoqueInicial": estoqueInicial,
+            "estoque": estoqueInicial,
             "estoqueMin": estoqueMin,
             "estoqueMax": estoqueMax,
             "qtdVendidos": 0,
             "valorVendidos": 0
-        },  empresa?.idEmpresa)){
+        }, empresa?.id)) {
             navigate(-1)
         }
     }

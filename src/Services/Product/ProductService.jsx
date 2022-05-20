@@ -33,10 +33,6 @@ class ProductService {
         return null
       });
   }
-
-  deleteProdutos({ codigo }) {
-    axios.delete(`${urlBase}/deletar-produto/${codigo}`)
-  }
 }
 
 
