@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import EmployeesService from '../../../Services/Employee/EmployeesService';
 import { AuthContext } from "../../../Context/AuthContext";
-const service = new EmployeesService();
+import ProviderService from '../../../Services/Provider/ProviderService';
+const service = new ProviderService();
 
-function EmployeesList() {
-   
+function ProviderList(props) {
     const { empresa } = useContext(AuthContext)
 
     const [pageSize, setPageSize] = useState(10)
@@ -19,7 +18,7 @@ function EmployeesList() {
 
         getData()
         async function getData() {
-            const apiResponse = await service.getFuncionarios(empresa?.id)
+            const apiResponse = await service.getProdutos(empresa?.idEmpresa)
             console.log(apiResponse)
             setItems(apiResponse)
         }
@@ -33,7 +32,7 @@ function EmployeesList() {
             autoWidth={true}
             rowHeight={70}
             columns={columns}
-            getRowId={(row) => row.idFuncionario}
+            getRowId={(row) => row.codigo}
             rows={items}
             page={page}
             pageSize={pageSize}
@@ -48,26 +47,31 @@ function EmployeesList() {
 
 const columns = [
     {
-        field: "nomeFuncionario",
-        headerName: "Nome",
+        field: "idFornecedor",
+        headerName: "ID do fornecedor",
         width: 290
     },
     {
-        field: "cpfFuncionario",
-        headerName: "CPF",
+        field: "nomeFornecedor",
+        headerName: "Nome do fornecedor",
+        width: 290
+    },
+    {
+        field: "telefone",
+        headerName: "Telefone do fornecedor",
         width: 200
     },
     {
-        field: "telefoneFuncionario",
-        headerName: "Telefone",
-        width: 200
+        field: "nomeProduto",
+        headerName: "Nome do produto",
+        width: 220
     },
     {
-        field: "salarioFuncionario",
-        headerName: "Salario",
+        field: "qtdFornecida",
+        headerName: "Quantidade fornecida",
         width: 220
     }
 
 ];
 
-export default EmployeesList;
+export default ProviderList;

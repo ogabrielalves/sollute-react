@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import EmployeesService from '../../../Services/Employee/EmployeesService';
 import { AuthContext } from "../../../Context/AuthContext";
-const service = new EmployeesService();
+import ClientService from '../../../Services/Client/ClientService';
+const service = new ClientService();
 
-function EmployeesList() {
-   
+function ClientList(props) {
     const { empresa } = useContext(AuthContext)
 
     const [pageSize, setPageSize] = useState(10)
@@ -19,7 +18,7 @@ function EmployeesList() {
 
         getData()
         async function getData() {
-            const apiResponse = await service.getFuncionarios(empresa?.id)
+            const apiResponse = await service.getProdutos(empresa?.idEmpresa)
             console.log(apiResponse)
             setItems(apiResponse)
         }
@@ -33,7 +32,7 @@ function EmployeesList() {
             autoWidth={true}
             rowHeight={70}
             columns={columns}
-            getRowId={(row) => row.idFuncionario}
+            getRowId={(row) => row.codigo}
             rows={items}
             page={page}
             pageSize={pageSize}
@@ -48,26 +47,21 @@ function EmployeesList() {
 
 const columns = [
     {
-        field: "nomeFuncionario",
-        headerName: "Nome",
+        field: "idCliente",
+        headerName: "ID do Cliente",
         width: 290
     },
     {
-        field: "cpfFuncionario",
-        headerName: "CPF",
-        width: 200
+        field: "nomeCliente",
+        headerName: "Nome do cliente",
+        width: 290
     },
     {
-        field: "telefoneFuncionario",
-        headerName: "Telefone",
+        field: "telefone",
+        headerName: "Telefone do cliente",
         width: 200
-    },
-    {
-        field: "salarioFuncionario",
-        headerName: "Salario",
-        width: 220
     }
 
 ];
 
-export default EmployeesList;
+export default ClientList;

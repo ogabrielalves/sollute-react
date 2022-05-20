@@ -7,9 +7,8 @@ import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import useAuth from '../../../Hooks/useAuth';
-import EmployeesService from '../../../Services/Employee/EmployeesService';
+import ProviderService from '../../../Services/Provider/ProviderService';
 
-// Style
 const styleGridButton = {
     display: 'flex',
     alignItems: 'center',
@@ -17,39 +16,32 @@ const styleGridButton = {
     marginTop: '20px'
 }
 
-function NewEmployee() {
+function NewProvider() {
     const navigate = useNavigate();
 
     const { empresa } = useAuth();
 
-    const [nome, setNome] = useState('');
-    const [cpf, setCpf] = useState('');
+    const [nomeFornecedor, setNomeFornecedor] = useState('');
+    const [idFornecedor, setIdFornecedor] = useState('');
     const [telefone, setTelefone] = useState('');
-    const [salario, setSalario] = useState('');
+    const [nomeProduto, setNomeProduto] = useState('');
+    const [qtdFornecida, setQtdFornecida] = useState('');
+    
+   async function PostProvider() {
 
-    async function postEmployee() {
-        const service = new EmployeesService()
-        if (await service.postFuncionarios({
-            "empresa": {
-                "email": empresa.email,
-                "senha": empresa.senha,
-                "nomeFantasia": empresa.nomeFantasia,
-                "razaoSocial": empresa.razaoSocial,
-                "cnpj": empresa.cnpj,
-                "qtdProdutosVendidos": empresa.qtdProdutosVendidos,
-                "totalProdutosVendidos": empresa.totalProdutosVendidos,
-                "autenticado": empresa.autenticado,
-                "id": empresa.id
-            },
-            "nomeFuncionario": nome,
-            "cpfFuncionario": cpf,
-            "telefoneFuncionario": telefone,
-            "salarioFuncionario": salario
-        }, empresa?.id)) {
+        const service = new ProviderService()
+        if(await service.postFuncionarios({
+            "fkEmpresa": empresa?.idEmpresa,
+            "IdFornecedor": idFornecedor,
+            "nomeFornecedor": nomeFornecedor,
+            "telefone": telefone,
+            "nomeProduto": nomeProduto,
+            "qtdFornecida": qtdFornecida
+        },  empresa?.idEmpresa)){
             navigate(-1)
         }
     }
-
+    
     return (
         <Dashboard>
             <form onSubmit={(evt) => {
@@ -58,24 +50,26 @@ function NewEmployee() {
                 <Grid container spacing={3}>
                     <Grid item xs={12} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <LocalOfferIcon style={{ marginRight: '20px' }} />
-                        <h1>Novo Funcionario</h1>
+                        <h1>Novo Fornecedor</h1>
                     </Grid>
                     <Grid item xs={12}>
                         <h2>Dados Gerais</h2>
                     </Grid>
                     <Grid item xs={12} md={4}>
-                        <TextField required fullWidth id="outlined-basic" label="Nome do funcionario" variant="outlined" onChange={(evt) => setNome(evt.target.value)} />
-                    </Grid>
-
-                    <Grid item xs={12} md={4}>
-                        <TextField required fullWidth id="outlined-basic" label="CPF do funcionario" variant="outlined" onChange={(evt) => setCpf(evt.target.value)} />
+                        <TextField required fullWidth id="outlined-basic" label="Nome do fornecedor" variant="outlined" onChange={(evt) => setNomeFornecedor(evt.target.value)} />
                     </Grid>
                     <Grid item xs={12} md={4}>
-                        <TextField required fullWidth id="outlined-basic" label="Telefone do funcionario" variant="outlined" onChange={(evt) => setTelefone(evt.target.value)} />
+                        <TextField required fullWidth id="outlined-basic" label="Id do fornecedor" variant="outlined" onChange={(evt) => setIdFornecedor(evt.target.value)} />
                     </Grid>
                     <Grid item xs={12} md={4}>
-                        <TextField required fullWidth id="outlined-basic" label="Salario do funcionario" variant="outlined" onChange={(evt) => setSalario(evt.target.value)} />
+                        <TextField required fullWidth id="outlined-basic" label="Telefone do fornecedor" variant="outlined" onChange={(evt) => setTelefone(evt.target.value)} />
                     </Grid>
+                    <Grid item xs={12} md={4}>
+                        <TextField required fullWidth id="outlined-basic" label="Nome do produto" variant="outlined" onChange={(evt) => setNomeProduto(evt.target.value)} />
+                    </Grid>
+                    <Grid item xs={12} md={4}>
+                        <TextField required fullWidth id="outlined-basic" label="Quantidade fonecida" variant="outlined" onChange={(evt) => setQtdFornecida(evt.target.value)} />
+                    </Grid>                    
 
                     <Grid container spacing={3} sx={styleGridButton}>
                         <Grid item xs={12} md={3}>
@@ -84,10 +78,10 @@ function NewEmployee() {
                                 variant="contained"
                                 startIcon={<CheckCircleIcon />}
                                 onClick={() => {
-                                    postEmployee()
+                                    PostProvider()
                                 }}
                             >
-                                Criar funcionario
+                                Criar Fornecedor
                             </Button>
                         </Grid>
                         <Grid item xs={12} md={3}>
@@ -96,7 +90,7 @@ function NewEmployee() {
                                 fullWidth
                                 variant="outlined"
                                 startIcon={<ArrowBackIcon />}
-                                onClick={() => navigate('/dashboard/employees')}
+                                onClick={() => navigate('/dashboard/provider')}
                             >
                                 Voltar
                             </Button>
@@ -106,9 +100,9 @@ function NewEmployee() {
             </form>
         </Dashboard>
     );
-
-
-
+    
+   
+  
 }
 
-export default NewEmployee;
+export default NewProvider;

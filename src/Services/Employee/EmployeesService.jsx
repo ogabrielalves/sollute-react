@@ -1,16 +1,15 @@
 import axios from 'axios';
 import { notify } from '../../Components/Notify/Notify';
 
-const urlBase = 'http://localhost:8080/funcionarios';
+const urlBase = 'http://localhost:8080/empresas';
 const headers = {
   'Content-Type': 'application/json'
 };
 
-
 class EmployeesService {
 
     async getFuncionarios(idEmpresa) {
-      return await axios.get(`${urlBase}/listar-funcionario/${idEmpresa}`, {
+      return await axios.get(`${urlBase}/listar-funcionarios/${idEmpresa}`, {
         headers: headers
       })
         .then(res => res.data)
