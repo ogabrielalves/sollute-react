@@ -40,7 +40,6 @@ function Rotas() {
         <Route exact path="/dashboard/product" element={<Product />} />
         <Route exact path="/dashboard/new-product" element={<NewProduct />} />
         <Route exact path="/dashboard/edit-product/:productId" element={<EditProduct />} />
-        <Route exact path="/dashboard/delete-product" element={<DeleteProduct />} />
         
         <Route exact path="/dashboard/employees" element={<Employees />} />
         <Route exact path="/dashboard/new-employee" element={<NewEmployee />} />
