@@ -32,6 +32,21 @@ class ProviderService {
           return null
         });
     }
+
+    async putProvider(obj, idEmpresa) {
+      return await axios.put(`${urlBase}/editar-fornecedor/${idEmpresa}`,
+        obj
+      )
+        .then(res => {
+          notify('Fornecedor editado com sucesso!', 'sucess')
+          return res.data
+        })
+        .catch((err) => {
+          notify('Erro ao editar o Fornecedor.', 'error')
+          console.error(`Request Failed ${err}`);
+          return null
+        });
+    }
   
     deleteFornecedores({ codigo }) {
       axios.delete(`${urlBase}/deletar-fornecedor/${codigo}`)

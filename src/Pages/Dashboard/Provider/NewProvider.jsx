@@ -1,12 +1,12 @@
 import { React, useState } from 'react';
-import Dashboard from '../../../Components/Dashboard/Dashboard';
-import { TextField, Grid, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { TextField, Grid, Button } from '@mui/material';
+import Dashboard from '../../../Components/Dashboard/Dashboard';
 
+import useAuth from '../../../Hooks/useAuth';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import useAuth from '../../../Hooks/useAuth';
 import ProviderService from '../../../Services/Provider/ProviderService';
 
 const styleGridButton = {

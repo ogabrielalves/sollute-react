@@ -35,7 +35,7 @@ function DeleteEmployee() {
                         <h1>Excluir Funcionario</h1>
                     </Grid>
                     <Grid item xs={12} md={8} marginBottom={2}>
-                        <TextField fullWidth id="outlined-basic" label="ID do Produto" variant="outlined"
+                        <TextField fullWidth id="outlined-basic" label="ID do Funcionario" variant="outlined"
                             onChange={(evt) => setId(evt.target.value)} />
                     </Grid>
                     <Grid item xs={12}></Grid>

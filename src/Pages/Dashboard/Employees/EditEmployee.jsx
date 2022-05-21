@@ -1,6 +1,11 @@
-import React from 'react';
-import Dashboard from '../../../Components/Dashboard/Dashboard';
+import axios from 'axios';
+import { React, useState } from 'react';
+import useAuth from '../../../Hooks/useAuth';
 import { TextField, Grid, Button } from '@mui/material';
+import { useNavigate, useParams } from 'react-router-dom';
+import { notify } from '../../../Components/Notify/Notify';
+import Dashboard from '../../../Components/Dashboard/Dashboard';
+import EmployeesService from '../../../Services/Employee/EmployeesService';
 
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
@@ -15,6 +20,40 @@ const styleGridButton = {
 }
 
 function EditEmployee() {
+    const navigate = useNavigate();
+
+    const { clientId } = useParams();
+    const { empresa } = useAuth();
+
+    const [nomeFuncionario, setNome] = useState('');
+    const [telefoneFuncionario, setTelefoneFuncionario] = useState(''); 
+    const [cpfFuncionario, setCpfFuncionario] = useState(''); 
+    const [salario, setSalario] = useState(''); 
+    
+    function deleteEmployee() {
+        axios.delete(`http://localhost:8080/empresas/deletar-funcionario/${clientId}/${empresa?.id}`)
+            .then((res) => {
+                if (res.status === 200) {
+                    notify('Funcionario excluido com sucesso!', 'sucess')
+                }
+
+            }).catch((err) => {
+                notify('Funcionario não encontrado!', 'error')
+            });
+    }
+
+    async function putEmployee() {
+        const service = new EmployeesService()
+        if (await service.putEmployee({
+            "nomeFuncionario": nomeFuncionario,
+            "cpfFuncionario": cpfFuncionario,
+            "telefoneFuncionario": telefoneFuncionario,
+            "salario": salario
+        }, empresa?.id)) {
+            navigate(-1)
+        }
+    }
+
     return (  
         <Dashboard>
             <Grid container spacing={3}>
@@ -26,19 +65,16 @@ function EditEmployee() {
                     <h2>Dados Gerais</h2>
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <TextField fullWidth id="outlined-basic" label="Nome do funcionario" variant="outlined" />
+                    <TextField fullWidth id="outlined-basic" label="Nome do funcionario" variant="outlined" onChange={(evt) => setNome(evt.target.value)} />
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <TextField fullWidth id="outlined-basic" label="Código do funcionario" variant="outlined" />
+                    <TextField fullWidth id="outlined-basic" label="CPF do funcionario" variant="outlined" onChange={(evt) => setCpfFuncionario(evt.target.value)} />
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <TextField fullWidth id="outlined-basic" label="CPF do funcionario" variant="outlined" />
+                    <TextField fullWidth id="outlined-basic" label="Telefone do funcionario" variant="outlined" onChange={(evt) => setTelefoneFuncionario(evt.target.value)} />
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <TextField fullWidth id="outlined-basic" label="Telefone do funcionario" variant="outlined" />
-                </Grid>
-                <Grid item xs={12} md={4}>
-                    <TextField fullWidth id="outlined-basic" label="Salario do Funcionario" variant="outlined" />
+                    <TextField fullWidth id="outlined-basic" label="Salario do Funcionario" variant="outlined" onChange={(evt) => setSalario(evt.target.value)} />
                 </Grid>
                
                 <Grid container spacing={3} sx={styleGridButton}>
@@ -47,6 +83,9 @@ function EditEmployee() {
                             fullWidth
                             variant="contained"
                             startIcon={<CheckCircleIcon />}
+                            onClick={() => {
+                                putEmployee()
+                            }}
                         >
                             Atualizar
                         </Button>

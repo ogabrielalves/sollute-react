@@ -1,16 +1,16 @@
+import axios from 'axios';
 import { React, useState } from 'react';
-import Dashboard from '../../../Components/Dashboard/Dashboard';
-import { useNavigate, useParams } from 'react-router-dom';
-import { notify } from '../../../Components/Notify/Notify';
 import useAuth from '../../../Hooks/useAuth';
 import { TextField, Grid, Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { notify } from '../../../Components/Notify/Notify';
+import Dashboard from '../../../Components/Dashboard/Dashboard';
+import ClientService from '../../../Services/Client/ClientService';
 
+import DeleteIcon from '@mui/icons-material/Delete';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import useAuth from '../../../Hooks/useAuth';
-import ClientService from '../../../Services/Client/ClientService';
 
 const styleGridButton = {
     display: 'flex',
@@ -22,10 +22,23 @@ const styleGridButton = {
 function EditClient() {
     const navigate = useNavigate();
 
+    const { clientId } = useParams();
     const { empresa } = useAuth();
 
     const [telefone, setTelefone] = useState('');
     const [nomeCliente, setNome] = useState('');
+
+    function deleteCliente() {
+        axios.delete(`http://localhost:8080/empresas/deletar-cliente/${clientId}/${empresa?.id}`)
+            .then((res) => {
+                if (res.status === 200) {
+                    notify('Cliente excluido com sucesso!', 'sucess')
+                }
+
+            }).catch((err) => {
+                notify('Cliente não encontrado!', 'error')
+            });
+    }
 
     async function putClient() {
         const service = new ClientService()
@@ -50,13 +63,10 @@ function EditClient() {
                 <Grid item xs={12}>
                     <h2>Dados Gerais</h2>
                 </Grid>
-                <Grid item xs={12} md={4}>
-                    <TextField fullWidth id="outlined-basic" label="ID do client" variant="outlined"/>
-                </Grid>
-                <Grid item xs={12} md={4}>
+                <Grid item xs={12} md={6}>
                     <TextField fullWidth id="outlined-basic" label="Nome do cliente" variant="outlined" onChange={(evt) => setNome(evt.target.value)} />
                 </Grid>
-                <Grid item xs={12} md={4}>
+                <Grid item xs={12} md={6}>
                     <TextField fullWidth id="outlined-basic" label="Telefone do cliente" variant="outlined" onChange={(evt) => setTelefone(evt.target.value)} />
                 </Grid>
 
@@ -96,7 +106,6 @@ function EditClient() {
                 </Grid>
             </Grid>
         </Dashboard>
-
     );
 }
 

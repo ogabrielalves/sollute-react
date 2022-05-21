@@ -1,12 +1,12 @@
 import React from 'react';
-import Dashboard from '../../../Components/Dashboard/Dashboard';
 import { TextField, Grid, Button } from '@mui/material';
+import Dashboard from '../../../Components/Dashboard/Dashboard';
 
 
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import SearchIcon from '@mui/icons-material/Search';
-import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import ClientList from './ClientList';
+import SearchIcon from '@mui/icons-material/Search';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 
 const center = {
     display: 'flex',
@@ -23,13 +23,11 @@ function Client() {
                     <LocalOfferIcon style={{ marginRight: '20px' }} />
                     <h1>Clientes</h1>
                 </Grid>
-                <Grid item xs={12} md={4}>
-                    <TextField fullWidth id="outlined-basic" label="ID do cliente " variant="outlined" />
-                </Grid>
-                <Grid item xs={12} md={4}>
+
+                <Grid item xs={12} md={6}>
                     <TextField fullWidth id="outlined-basic" label="Nome do cliente" variant="outlined" />
                 </Grid>
-                <Grid item xs={12} md={4}>
+                <Grid item xs={12} md={6}>
                     <TextField fullWidth id="outlined-basic" label="Telefone do cliente " variant="outlined" />
                 </Grid>
 

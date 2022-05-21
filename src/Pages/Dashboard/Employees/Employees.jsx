@@ -23,14 +23,21 @@ function Employees() {
                     <LocalOfferIcon style={{ marginRight: '20px' }} />
                     <h1>Funcionarios</h1>
                 </Grid>
-                <Grid item xs={12} md={4}>
+                <Grid item xs={12} md={6}>
                     <TextField fullWidth id="outlined-basic" label="Nome do funcionario" variant="outlined" />
                 </Grid>
-                <Grid item xs={12} md={4}>
-                    <TextField fullWidth id="outlined-basic" label="Código do funcionario " variant="outlined" />
-                </Grid>
-                <Grid item xs={12} md={4}>
+                <Grid item xs={12} md={6}>
                     <TextField fullWidth id="outlined-basic" label="CPF do funcionario" variant="outlined" />
+                </Grid>
+                                <Grid item xs={12} md={3}>
+                    <Button
+                        fullWidth
+                        variant="contained"
+                        startIcon={<AddCircleIcon />}
+                        onClick={() => window.location.href = "/dashboard/new-employee"}
+                    >
+                        Novo Funcionario
+                    </Button>
                 </Grid>
                 <Grid item xs={12} md={3}>
                     <Button
@@ -39,16 +46,6 @@ function Employees() {
                         startIcon={<SearchIcon />}
                     >
                         Pesquisar
-                    </Button>
-                </Grid>
-                <Grid item xs={12} md={3}>
-                    <Button
-                        fullWidth
-                        variant="contained"
-                        startIcon={<AddCircleIcon />}
-                        onClick={() => window.location.href = "/dashboard/new-employee"}
-                    >
-                        Novo Funcionario
                     </Button>
                 </Grid>
                 <Grid item xs={12} md={3}>

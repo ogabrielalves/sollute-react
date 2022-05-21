@@ -64,7 +64,7 @@ const columns = [
         width: 390
     },
     {
-        field: "teleftelefoneFornecedorone",
+        field: "telefoneFornecedor",
         headerName: "Telefone do Fornecedor",
         width: 300
     },
