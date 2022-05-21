@@ -2,9 +2,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { AuthContext } from "../../../Context/AuthContext";
 import ClientService from '../../../Services/Client/ClientService';
+import { useNavigate } from 'react-router-dom';
 const service = new ClientService();
 
 function ClientList() {
+    const navigate = useNavigate();
+
     const { empresa } = useContext(AuthContext)
 
     const [pageSize, setPageSize] = useState(10)
@@ -33,6 +36,10 @@ function ClientList() {
             rowHeight={70}
             columns={columns}
             getRowId={(row) => row.idCliente}
+            onCellClick={(params) => {
+                console.log(params.row)
+                navigate(`/dashboard/edit-client/${params.row.idCliente}`)
+            }}
             rows={items}
             page={page}
             pageSize={pageSize}

@@ -4,8 +4,7 @@ import { TextField, Grid, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
+import SearchIcon from '@mui/icons-material/Search';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import ProviderList from './ProviderList';
 
@@ -35,7 +34,7 @@ function Provider() {
                 <Grid item xs={12} md={4}>
                     <TextField fullWidth id="outlined-basic" label="Nome do produto" variant="outlined" />
                 </Grid>
-                <Grid item xs={12} md={3}>
+                <Grid item xs={12} md={4}>
                     <Button
                         fullWidth
                         variant="contained"
@@ -45,16 +44,15 @@ function Provider() {
                         Novo fornecedor
                     </Button>
                 </Grid>
-                <Grid item xs={12} md={3}>
+                <Grid item xs={12} md={4}>
                     <Button
                         fullWidth
                         variant="contained"
-                        startIcon={<EditIcon />}
-                        onClick={() => navigate("/dashboard/edit-provider")}
+                        startIcon={<SearchIcon />}
                     >
-                        Editar Fornecedor
+                        Pesquisar
                     </Button>
-                </Grid>             
+                </Grid>        
 
                 <Grid item xs={12}>
                     <ProviderList />

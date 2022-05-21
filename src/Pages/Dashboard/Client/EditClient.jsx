@@ -1,5 +1,8 @@
 import { React, useState } from 'react';
 import Dashboard from '../../../Components/Dashboard/Dashboard';
+import { useNavigate, useParams } from 'react-router-dom';
+import { notify } from '../../../Components/Notify/Notify';
+import useAuth from '../../../Hooks/useAuth';
 import { TextField, Grid, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
@@ -73,9 +76,19 @@ function EditClient() {
                     <Grid item xs={12} md={3}>
                         <Button
                             fullWidth
+                            variant="contained"
+                            onClick={() => { deleteCliente() }}
+                            startIcon={<DeleteIcon />}
+                        >
+                            Excluir
+                        </Button>
+                    </Grid>
+                    <Grid item xs={12} md={3}>
+                        <Button
+                            fullWidth
                             variant="outlined"
                             startIcon={<ArrowBackIcon />}
-                            onClick={() => window.location.href = "/dashboard/client"}
+                            onClick={() => navigate("/dashboard/client")}
                         >
                             Voltar
                         </Button>

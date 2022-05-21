@@ -22,7 +22,6 @@ import EditProvider from "./Pages/Dashboard/Provider/EditProvider";
 import Client from "./Pages/Dashboard/Client/Client";
 import NewClient from "./Pages/Dashboard/Client/NewClient";
 import EditClient from "./Pages/Dashboard/Client/EditClient";
-import DeleteClient from "./Pages/Dashboard/Client/DeleteClient";
 
 function Rotas() {
   return (
@@ -47,8 +46,7 @@ function Rotas() {
 
         <Route exact path="/dashboard/client" element={<Client />} />
         <Route exact path="/dashboard/new-client" element={<NewClient />} />
-        <Route exact path="/dashboard/edit-client" element={<EditClient />} />
-        <Route exact path="/dashboard/delete-client" element={<DeleteClient />} />
+        <Route exact path="/dashboard/edit-client/:clientId" element={<EditClient />} />
 
         <Route exact path="/dashboard/provider" element={<Provider />} />
         <Route exact path="/dashboard/new-provider" element={<NewProvider />} />

@@ -4,8 +4,7 @@ import { TextField, Grid, Button } from '@mui/material';
 
 
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
+import SearchIcon from '@mui/icons-material/Search';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import ClientList from './ClientList';
 
@@ -35,7 +34,7 @@ function Client() {
                 </Grid>
 
 
-                <Grid item xs={12} md={3}>
+                <Grid item xs={12} md={4}>
                     <Button
                         fullWidth
                         variant="contained"
@@ -45,28 +44,15 @@ function Client() {
                         Novo Cliente
                     </Button>
                 </Grid>
-                <Grid item xs={12} md={3}>
+                <Grid item xs={12} md={4}>
                     <Button
                         fullWidth
                         variant="contained"
-                        startIcon={<EditIcon />}
-                        onClick={() => window.location.href = "/dashboard/edit-client"}
+                        startIcon={<SearchIcon />}
                     >
-                        Editar Cliente
+                        Pesquisar
                     </Button>
                 </Grid>
-                <Grid item xs={12} md={3}>
-                    <Button
-                        fullWidth
-                        variant="contained"
-                        onClick={() => window.location.href = "/dashboard/delete-client"}
-                        endIcon={<DeleteIcon />}
-                    >
-                        Excluir Cliente
-                    </Button>
-                </Grid>
-
-
                 <Grid item xs={12}>
                     <ClientList />
                 </Grid>
