@@ -23,11 +23,11 @@ function NewClient() {
 
     const [telefone, setTelefone] = useState('');
     const [nomeCliente, setNomeCliente] = useState('');
-    
+
     async function postClient() {
         const service = new ClientService()
         if (await service.postCliente({
-            "empresa": {
+            "fkEmpresa": {
                 "email": empresa.email,
                 "senha": empresa.senha,
                 "nomeFantasia": empresa.nomeFantasia,
@@ -44,7 +44,7 @@ function NewClient() {
             navigate(-1)
         }
     }
-    
+
     return (
         <Dashboard>
             <form onSubmit={(evt) => {
@@ -64,7 +64,7 @@ function NewClient() {
                     <Grid item xs={12} md={4}>
                         <TextField required fullWidth id="outlined-basic" label="Telefone do cliente" variant="outlined" onChange={(evt) => setTelefone(evt.target.value)} />
                     </Grid>
-                                      
+
 
                     <Grid container spacing={3} sx={styleGridButton}>
                         <Grid item xs={12} md={3}>
@@ -95,9 +95,9 @@ function NewClient() {
             </form>
         </Dashboard>
     );
-    
-   
-  
+
+
+
 }
 
 export default NewClient;

@@ -1,10 +1,15 @@
 import React from 'react';
+import axios from 'axios';
 import Dashboard from '../../../Components/Dashboard/Dashboard';
+import { useNavigate, useParams } from 'react-router-dom';
+import { notify } from '../../../Components/Notify/Notify';
+import useAuth from '../../../Hooks/useAuth';
 import { TextField, Grid, Button } from '@mui/material';
 
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 // Style
 const styleGridButton = {
@@ -16,6 +21,23 @@ const styleGridButton = {
 
 
 function EditClient() {
+    const { clientId } = useParams();
+
+    const navigate = useNavigate();
+
+    const { empresa } = useAuth();
+
+    function deleteCliente() {
+        axios.delete(`http://localhost:8080/empresas/deletar-cliente/${clientId}/${empresa?.id}`)
+            .then((res) => {
+                if (res.status === 200) {
+                    notify('Cliente excluido com sucesso!', 'sucess')
+                }
+
+            }).catch((err) => {
+                notify('Cliente não encontrado!', 'error')
+            });
+    }
     return (  
         <Dashboard>
             <Grid container spacing={3}>
@@ -49,9 +71,19 @@ function EditClient() {
                     <Grid item xs={12} md={3}>
                         <Button
                             fullWidth
+                            variant="contained"
+                            onClick={() => { deleteCliente() }}
+                            startIcon={<DeleteIcon />}
+                        >
+                            Excluir
+                        </Button>
+                    </Grid>
+                    <Grid item xs={12} md={3}>
+                        <Button
+                            fullWidth
                             variant="outlined"
                             startIcon={<ArrowBackIcon />}
-                            onClick={() => window.location.href = "/dashboard/client"}
+                            onClick={() => navigate("/dashboard/client")}
                         >
                             Voltar
                         </Button>
