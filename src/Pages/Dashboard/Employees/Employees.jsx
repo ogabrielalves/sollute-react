@@ -1,11 +1,10 @@
 import React from 'react';
 import Dashboard from '../../../Components/Dashboard/Dashboard';
 import { TextField, Grid, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 import SearchIcon from '@mui/icons-material/Search';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import EmployeesList from './EmployeesList';
 
@@ -16,8 +15,11 @@ const center = {
 }
 
 function Employees() {
-    return ( <>
-       <Dashboard>
+
+    const navigate = useNavigate();
+
+    return (<>
+        <Dashboard>
             <Grid container spacing={3} sx={center}>
                 <Grid item xs={12} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <LocalOfferIcon style={{ marginRight: '20px' }} />
@@ -29,17 +31,17 @@ function Employees() {
                 <Grid item xs={12} md={6}>
                     <TextField fullWidth id="outlined-basic" label="CPF do funcionario" variant="outlined" />
                 </Grid>
-                                <Grid item xs={12} md={3}>
+                <Grid item xs={12} md={4}>
                     <Button
                         fullWidth
                         variant="contained"
                         startIcon={<AddCircleIcon />}
-                        onClick={() => window.location.href = "/dashboard/new-employee"}
+                        onClick={() => navigate("/dashboard/new-employee")}
                     >
                         Novo Funcionario
                     </Button>
                 </Grid>
-                <Grid item xs={12} md={3}>
+                <Grid item xs={12} md={4}>
                     <Button
                         fullWidth
                         variant="contained"
@@ -48,35 +50,15 @@ function Employees() {
                         Pesquisar
                     </Button>
                 </Grid>
-                <Grid item xs={12} md={3}>
-                    <Button
-                        fullWidth
-                        variant="contained"
-                        startIcon={<EditIcon />}
-                        onClick={() => window.location.href = "/dashboard/edit-employee"}
-                    >
-                        Editar Funcionario
-                    </Button>
-                </Grid>
-                <Grid item xs={12} md={3}>
-                    <Button
-                        fullWidth
-                        variant="contained"
-                        onClick={() => window.location.href = "/dashboard/delete-employee"}
-                        endIcon={<DeleteIcon />}
-                    >
-                        Excluir Funcionario
-                    </Button>
-                </Grid>
                 <Grid item xs={12}>
-                    <EmployeesList/>
+                    <EmployeesList />
                 </Grid>
-                
+
             </Grid>
 
 
         </Dashboard>
-    </> );
+    </>);
 }
 
 export default Employees;
