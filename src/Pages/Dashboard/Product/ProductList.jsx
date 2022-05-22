@@ -28,7 +28,7 @@ function ProductList() {
         }
     }, [empresa])
 
-    return (           
+    return (
         <DataGrid
             sortable={true}
             filter={true}
@@ -48,8 +48,8 @@ function ProductList() {
             onPageChange={(newPage) => setPage(newPage)}
 
             rowsPerPageOptions={[10, 20, 30]}
-            autoHeight={true} />           
-      
+            autoHeight={true} />
+
     )
 }
 
