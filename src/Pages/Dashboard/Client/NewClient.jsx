@@ -26,8 +26,9 @@ function NewClient() {
 
     async function postClient() {
         const service = new ClientService()
-        if (await service.postCliente({
+        if (await service.postClient({
             "fkEmpresa": {
+                "idEmpresa": empresa.idEmpresa,
                 "email": empresa.email,
                 "senha": empresa.senha,
                 "nomeFantasia": empresa.nomeFantasia,
@@ -35,12 +36,11 @@ function NewClient() {
                 "cnpj": empresa.cnpj,
                 "qtdProdutosVendidos": empresa.qtdProdutosVendidos,
                 "totalProdutosVendidos": empresa.totalProdutosVendidos,
-                "autenticado": empresa.autenticado,
-                "id": empresa.id
+                "autenticado": empresa.autenticado
             },
             "nomeCliente": nomeCliente,
             "telefoneCliente": telefone
-        }, empresa?.id)) {
+        }, empresa?.idEmpresa)) {
             navigate(-1)
         }
     }
@@ -58,10 +58,10 @@ function NewClient() {
                     <Grid item xs={12}>
                         <h2>Dados Gerais</h2>
                     </Grid>
-                    <Grid item xs={12} md={4}>
+                    <Grid item xs={12} md={6}>
                         <TextField required fullWidth id="outlined-basic" label="Nome do cliente" variant="outlined" onChange={(evt) => setNomeCliente(evt.target.value)} />
                     </Grid>
-                    <Grid item xs={12} md={4}>
+                    <Grid item xs={12} md={6}>
                         <TextField required fullWidth id="outlined-basic" label="Telefone do cliente" variant="outlined" onChange={(evt) => setTelefone(evt.target.value)} />
                     </Grid>
 

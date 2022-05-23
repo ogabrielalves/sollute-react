@@ -28,7 +28,7 @@ function EditProduct() {
     const { empresa } = useAuth();
 
     function deleteProduto() {
-        axios.delete(`http://localhost:8080/empresas/deletar-produto/${productId}/${empresa?.id}`)
+        axios.delete(`http://localhost:8080/empresas/deletar-produto/${productId}/${empresa?.idEmpresa}`)
             .then((res) => {
                 if (res.status === 200) {
                     notify('Produto deletado com sucesso!', 'sucess')

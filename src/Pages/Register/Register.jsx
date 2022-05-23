@@ -78,7 +78,7 @@ function Register() {
     async function registerEmpresa() {
         const service = new RegisterService()
         await service.postEmpresa({
-            "login": emailInput,
+            "email": emailInput,
             "senha": senhaInput,
             "nomeFantasia": nomeFantasiaInput,
             "razaoSocial": razaoSocialInput,

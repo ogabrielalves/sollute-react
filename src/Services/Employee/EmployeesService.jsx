@@ -32,6 +32,21 @@ class EmployeesService {
           return null
         });
     }
+
+    async putEmployee(obj, idEmpresa) {
+      return await axios.put(`${urlBase}/editar-funcionario/${idEmpresa}`,
+        obj
+      )
+        .then(res => {
+          notify('Funcionario editado com sucesso!', 'sucess')
+          return res.data
+        })
+        .catch((err) => {
+          notify('Erro ao editar o Funcionario.', 'error')
+          console.error(`Request Failed ${err}`);
+          return null
+        });
+    }
   
     deleteFuncionarios({ codigo }) {
       axios.delete(`${urlBase}/deletar-funcionario/${codigo}`)

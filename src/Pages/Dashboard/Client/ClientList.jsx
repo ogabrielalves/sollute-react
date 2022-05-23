@@ -21,7 +21,7 @@ function ClientList() {
 
         getData()
         async function getData() {
-            const apiResponse = await service.getCliente(empresa?.id)
+            const apiResponse = await service.getCliente(empresa?.idEmpresa)
             console.log(apiResponse)
             setItems(apiResponse)
         }
