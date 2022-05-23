@@ -34,12 +34,13 @@ function NewProduct() {
     const [precoCompra, setPrecoCompra] = useState('');
     const [precoVenda, setPrecoVenda] = useState('');
     const [tamanho, setTamanho] = useState('');
-    console.log(empresa.id)
+    console.log(empresa)
 
     async function postProduto() {
         const service = new ProductService()
         if (await service.postProdutos({
             "empresa": {
+                "idEmpresa": empresa.idEmpresa,
                 "email": empresa.email,
                 "senha": empresa.senha,
                 "nomeFantasia": empresa.nomeFantasia,
@@ -47,10 +48,8 @@ function NewProduct() {
                 "cnpj": empresa.cnpj,
                 "qtdProdutosVendidos": empresa.qtdProdutosVendidos,
                 "totalProdutosVendidos": empresa.totalProdutosVendidos,
-                "autenticado": empresa.autenticado,
-                "id": empresa.id
+                "autenticado": empresa.autenticado
             },
-            "fkEmpresa": empresa?.id,
             "codigo": codigo,
             "nome": nome,
             "marca": marca,
@@ -64,11 +63,10 @@ function NewProduct() {
             "estoqueMax": estoqueMax,
             "qtdVendidos": 0,
             "valorVendidos": 0
-        }, empresa?.id)) {
+        }, empresa?.idEmpresa)) {
             navigate(-1)
         }
     }
-
 
     return (
         <Dashboard>

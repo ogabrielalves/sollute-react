@@ -30,7 +30,8 @@ function NewEmployee() {
     async function postEmployee() {
         const service = new EmployeesService()
         if (await service.postFuncionarios({
-            "empresa": {
+            "fkEmpresa": {
+                "idEmpresa": empresa.idEmpresa,
                 "email": empresa.email,
                 "senha": empresa.senha,
                 "nomeFantasia": empresa.nomeFantasia,
@@ -38,14 +39,13 @@ function NewEmployee() {
                 "cnpj": empresa.cnpj,
                 "qtdProdutosVendidos": empresa.qtdProdutosVendidos,
                 "totalProdutosVendidos": empresa.totalProdutosVendidos,
-                "autenticado": empresa.autenticado,
-                "id": empresa.id
+                "autenticado": empresa.autenticado
             },
             "nomeFuncionario": nome,
             "cpfFuncionario": cpf,
             "telefoneFuncionario": telefone,
             "salarioFuncionario": salario
-        }, empresa?.id)) {
+        }, empresa?.idEmpresa)) {
             navigate(-1)
         }
     }
@@ -63,17 +63,17 @@ function NewEmployee() {
                     <Grid item xs={12}>
                         <h2>Dados Gerais</h2>
                     </Grid>
-                    <Grid item xs={12} md={4}>
+                    <Grid item xs={12} md={6}>
                         <TextField required fullWidth id="outlined-basic" label="Nome do funcionario" variant="outlined" onChange={(evt) => setNome(evt.target.value)} />
                     </Grid>
 
-                    <Grid item xs={12} md={4}>
+                    <Grid item xs={12} md={6}>
                         <TextField required fullWidth id="outlined-basic" label="CPF do funcionario" variant="outlined" onChange={(evt) => setCpf(evt.target.value)} />
                     </Grid>
-                    <Grid item xs={12} md={4}>
+                    <Grid item xs={12} md={6}>
                         <TextField required fullWidth id="outlined-basic" label="Telefone do funcionario" variant="outlined" onChange={(evt) => setTelefone(evt.target.value)} />
                     </Grid>
-                    <Grid item xs={12} md={4}>
+                    <Grid item xs={12} md={6}>
                         <TextField required fullWidth id="outlined-basic" label="Salario do funcionario" variant="outlined" onChange={(evt) => setSalario(evt.target.value)} />
                     </Grid>
 

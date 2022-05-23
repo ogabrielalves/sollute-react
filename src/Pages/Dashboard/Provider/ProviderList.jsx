@@ -21,7 +21,7 @@ function ProviderList() {
 
         getData()
         async function getData() {
-            const apiResponse = await service.getFornecedores(empresa?.id)
+            const apiResponse = await service.getFornecedores(empresa?.idEmpresa)
             console.log(apiResponse)
             setItems(apiResponse)
         }

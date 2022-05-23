@@ -22,7 +22,7 @@ function ProductList() {
         console.log(empresa)
         getData()
         async function getData() {
-            const apiResponse = await service.getProdutos(empresa?.id)
+            const apiResponse = await service.getProdutos(empresa?.idEmpresa)
             console.log(apiResponse)
             setItems(apiResponse)
         }

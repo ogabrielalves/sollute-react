@@ -28,6 +28,7 @@ function NewClient() {
         const service = new ClientService()
         if (await service.postClient({
             "fkEmpresa": {
+                "idEmpresa": empresa.idEmpresa,
                 "email": empresa.email,
                 "senha": empresa.senha,
                 "nomeFantasia": empresa.nomeFantasia,
@@ -35,12 +36,11 @@ function NewClient() {
                 "cnpj": empresa.cnpj,
                 "qtdProdutosVendidos": empresa.qtdProdutosVendidos,
                 "totalProdutosVendidos": empresa.totalProdutosVendidos,
-                "autenticado": empresa.autenticado,
-                "id": empresa.id
+                "autenticado": empresa.autenticado
             },
             "nomeCliente": nomeCliente,
             "telefoneCliente": telefone
-        }, empresa?.id)) {
+        }, empresa?.idEmpresa)) {
             navigate(-1)
         }
     }

@@ -22,7 +22,7 @@ function EmployeesList() {
 
         getData()
         async function getData() {
-            const apiResponse = await service.getFuncionarios(empresa?.id)
+            const apiResponse = await service.getFuncionarios(empresa?.idEmpresa)
             console.log(apiResponse)
             setItems(apiResponse)
         }

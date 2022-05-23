@@ -31,7 +31,7 @@ function EditProvider() {
     const [qtdFornecida, setQtdFornecida] = useState('');
 
     function deleteFornecedor() {
-        axios.delete(`http://localhost:8080/empresas/deletar-fornecedor/${providerId}/${empresa?.id}`)
+        axios.delete(`http://localhost:8080/empresas/deletar-fornecedor/${providerId}/${empresa?.idEmpresa}`)
             .then((res) => {
                 if (res.status === 200) {
                     notify('Fornecedor excluido com sucesso!', 'sucess')
@@ -49,7 +49,7 @@ function EditProvider() {
             "telefoneFornecedor": telefone,
             "nomeProduto": nomeProduto,
             "qtdFornecida": qtdFornecida
-        }, empresa?.id)) {
+        }, empresa?.idEmpresa)) {
             navigate(-1)
         }
     }

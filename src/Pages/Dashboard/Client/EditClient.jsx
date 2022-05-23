@@ -29,7 +29,7 @@ function EditClient() {
     const [nomeCliente, setNome] = useState('');
 
     function deleteCliente() {
-        axios.delete(`http://localhost:8080/empresas/deletar-cliente/${clientId}/${empresa?.id}`)
+        axios.delete(`http://localhost:8080/empresas/deletar-cliente/${clientId}/${empresa?.idEmpresa}`)
             .then((res) => {
                 if (res.status === 200) {
                     notify('Cliente excluido com sucesso!', 'sucess')
@@ -45,7 +45,7 @@ function EditClient() {
         if (await service.putCliente({
             "nomeCliente": nomeCliente,
             "telefoneCliente": telefone
-        }, empresa?.id)) {
+        }, empresa?.idEmpresa)) {
             navigate(-1)
         }
     }

@@ -32,6 +32,7 @@ function NewProvider() {
         if (await service.postFornecedores({
             "idFornecedor": 0,
             "fkEmpresa": {
+                "idEmpresa": empresa.idEmpresa,
                 "email": empresa.email,
                 "senha": empresa.senha,
                 "nomeFantasia": empresa.nomeFantasia,
@@ -39,14 +40,13 @@ function NewProvider() {
                 "cnpj": empresa.cnpj,
                 "qtdProdutosVendidos": empresa.qtdProdutosVendidos,
                 "totalProdutosVendidos": empresa.totalProdutosVendidos,
-                "autenticado": empresa.autenticado,
-                "id": empresa.id
+                "autenticado": empresa.autenticado
             },
             "nomeFornecedor": nomeFornecedor,
             "telefoneFornecedor": telefone,
             "nomeProduto": nomeProduto,
             "qtd": qtdFornecida
-        }, empresa?.id)) {
+        }, empresa?.idEmpresa)) {
             navigate(-1)
         }
     }
