@@ -2,9 +2,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import EmployeesService from '../../../Services/Employee/EmployeesService';
 import { AuthContext } from "../../../Context/AuthContext";
+import { useNavigate } from 'react-router-dom';
 const service = new EmployeesService();
 
 function EmployeesList() {
+
+    const navigate = useNavigate();
    
     const { empresa } = useContext(AuthContext)
 
@@ -19,7 +22,7 @@ function EmployeesList() {
 
         getData()
         async function getData() {
-            const apiResponse = await service.getFuncionarios(empresa?.id)
+            const apiResponse = await service.getFuncionarios(empresa?.idEmpresa)
             console.log(apiResponse)
             setItems(apiResponse)
         }
@@ -34,6 +37,10 @@ function EmployeesList() {
             rowHeight={70}
             columns={columns}
             getRowId={(row) => row.idFuncionario}
+            onCellClick={(params) => {
+                console.log(params.row)
+                navigate(`/dashboard/edit-employee/${params.row.idFuncionario}`)
+            }}
             rows={items}
             page={page}
             pageSize={pageSize}
@@ -47,6 +54,11 @@ function EmployeesList() {
 }
 
 const columns = [
+    {
+        field: "idFuncionario",
+        headerName: "ID",
+        width: 90
+    },
     {
         field: "nomeFuncionario",
         headerName: "Nome",

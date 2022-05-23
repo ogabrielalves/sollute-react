@@ -14,7 +14,6 @@ import HomeDashboard from './Pages/Dashboard/Home/Home';
 import NotFound from "./Pages/NotFound/NotFound";
 import Employees from './Pages/Dashboard/Employees/Employees';
 import NewEmployee from "./Pages/Dashboard/Employees/NewEmployee";
-import DeleteEmployee from "./Pages/Dashboard/Employees/DeleteEmployee";
 import EditEmployee from "./Pages/Dashboard/Employees/EditEmployee";
 import Provider from "./Pages/Dashboard/Provider/Provider";
 import NewProvider from "./Pages/Dashboard/Provider/NewProvider";
@@ -41,8 +40,7 @@ function Rotas() {
         
         <Route exact path="/dashboard/employees" element={<Employees />} />
         <Route exact path="/dashboard/new-employee" element={<NewEmployee />} />
-        <Route exact path="/dashboard/delete-employee" element={<DeleteEmployee />} />
-        <Route exact path="/dashboard/edit-employee" element={<EditEmployee />} />
+        <Route exact path="/dashboard/edit-employee/:emplyoeeId" element={<EditEmployee />} />
 
         <Route exact path="/dashboard/client" element={<Client />} />
         <Route exact path="/dashboard/new-client" element={<NewClient />} />

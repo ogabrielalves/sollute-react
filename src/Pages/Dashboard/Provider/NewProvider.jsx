@@ -1,12 +1,12 @@
 import { React, useState } from 'react';
-import Dashboard from '../../../Components/Dashboard/Dashboard';
-import { TextField, Grid, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { TextField, Grid, Button } from '@mui/material';
+import Dashboard from '../../../Components/Dashboard/Dashboard';
 
+import useAuth from '../../../Hooks/useAuth';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import useAuth from '../../../Hooks/useAuth';
 import ProviderService from '../../../Services/Provider/ProviderService';
 
 const styleGridButton = {
@@ -32,6 +32,7 @@ function NewProvider() {
         if (await service.postFornecedores({
             "idFornecedor": 0,
             "fkEmpresa": {
+                "idEmpresa": empresa.idEmpresa,
                 "email": empresa.email,
                 "senha": empresa.senha,
                 "nomeFantasia": empresa.nomeFantasia,
@@ -39,14 +40,13 @@ function NewProvider() {
                 "cnpj": empresa.cnpj,
                 "qtdProdutosVendidos": empresa.qtdProdutosVendidos,
                 "totalProdutosVendidos": empresa.totalProdutosVendidos,
-                "autenticado": empresa.autenticado,
-                "id": empresa.id
+                "autenticado": empresa.autenticado
             },
             "nomeFornecedor": nomeFornecedor,
             "telefoneFornecedor": telefone,
             "nomeProduto": nomeProduto,
             "qtd": qtdFornecida
-        }, empresa?.id)) {
+        }, empresa?.idEmpresa)) {
             navigate(-1)
         }
     }

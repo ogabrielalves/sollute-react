@@ -22,13 +22,13 @@ function ProductList() {
         console.log(empresa)
         getData()
         async function getData() {
-            const apiResponse = await service.getProdutos(empresa?.id)
+            const apiResponse = await service.getProdutos(empresa?.idEmpresa)
             console.log(apiResponse)
             setItems(apiResponse)
         }
     }, [empresa])
 
-    return (           
+    return (
         <DataGrid
             sortable={true}
             filter={true}
@@ -48,8 +48,8 @@ function ProductList() {
             onPageChange={(newPage) => setPage(newPage)}
 
             rowsPerPageOptions={[10, 20, 30]}
-            autoHeight={true} />           
-      
+            autoHeight={true} />
+
     )
 }
 

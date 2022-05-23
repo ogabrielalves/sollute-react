@@ -19,7 +19,7 @@ class ClientService {
       });
   }
 
-  async postCliente(obj, idEmpresa) {
+  async postClient(obj, idEmpresa) {
     return await axios.post(`${urlBase}/adicionar-cliente/${idEmpresa}`,
       obj
     )
@@ -29,6 +29,21 @@ class ClientService {
       })
       .catch((err) => {
         notify('Erro ao cadastrar o cliente.', 'error')
+        console.error(`Request Failed ${err}`);
+        return null
+      });
+  }
+
+  async putCliente(obj, idEmpresa) {
+    return await axios.put(`${urlBase}/editar-cliente/${idEmpresa}`,
+      obj
+    )
+      .then(res => {
+        notify('Cliente editado com sucesso!', 'sucess')
+        return res.data
+      })
+      .catch((err) => {
+        notify('Erro ao editar o cliente.', 'error')
         console.error(`Request Failed ${err}`);
         return null
       });
