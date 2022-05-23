@@ -70,7 +70,7 @@ function DashboardContent(props) {
     },
     {
         title: 'Relatório de vendas',
-        link: '',
+        link: '/dashboard/sales-report',
         icon: <EqualizerIcon />,
     },
     {

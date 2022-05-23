@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 import Home from './Pages/Home/Home';
 import Register from './Pages/Register/Register';
@@ -21,12 +21,14 @@ import EditProvider from "./Pages/Dashboard/Provider/EditProvider";
 import Client from "./Pages/Dashboard/Client/Client";
 import NewClient from "./Pages/Dashboard/Client/NewClient";
 import EditClient from "./Pages/Dashboard/Client/EditClient";
+import SalesReport from "./Pages/Dashboard/SalesReport/SalesReport";
 
 function Rotas() {
-  return (
-    <Router>
-      <Routes>
-        <Route exact path="/" element={<Home />} />
+
+    return (
+        <Router>
+            <Routes>
+                <Route exact path="/" element={<Home />} />
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/contact" element={<Contact />} />
@@ -49,9 +51,11 @@ function Rotas() {
         <Route exact path="/dashboard/provider" element={<Provider />} />
         <Route exact path="/dashboard/new-provider" element={<NewProvider />} />
         <Route exact path="/dashboard/edit-provider/:providerId" element={<EditProvider />} />
-      </Routes>
-    </Router>
-  );
+
+                <Route exact path="/dashboard/sales-report" element={<SalesReport/>}/>
+            </Routes>
+        </Router>
+    );
 }
 
 export default Rotas;
