@@ -19,38 +19,38 @@ function Home() {
                     <Typography variant="h3">Olá, {empresa?.nomeFantasia}</Typography>
                     <Typography variant="h5">Olha essas dicas que preparamos para você.</Typography>
                 </Grid>
-                    <CardDashboard
-                        title={'Produtos'}
-                        body={'Seus produtos podem ser vistos ou criados na página de produtos.'}
-                        img={Glasses}
-                        alt={'Óculos'}
-                        button={'Criar novo produto'}
-                        urlPage={'/dashboard/new-product'}
-                    />
-                     <CardDashboard
-                        title={'Caixa'}
-                        body={'Quer realizar uma venda? Utilize o caixa para isso!'}
-                        img={Box}
-                        alt={'Caixa'}
-                        button={'Ir para o caixa'}
-                        url={''}
-                    />
-                     <CardDashboard
-                        title={'Clientes'}
-                        body={'Sabe aquele cliente que já é de casa? Adiciona ele aqui na loja para ter sempre o contato dele.'}
-                        img={Client}
-                        alt={'Cliente'}
-                        button={'Adicionar cliente'}
-                        urlPage={'/dashboard/new-client'}
-                    />
-                    <CardDashboard
-                        title={'Relatório'}
-                        body={'Ta afim de ver quanto vendeu esse mês? Quais produtos estão saindo bastante? Você pode olhar em relatórios.'}
-                        img={Report}
-                        alt={'Cliente'}
-                        button={'Olhar relatórios'}
-                        url={''}
-                    />
+                <CardDashboard
+                    title={'Produtos'}
+                    body={'Seus produtos podem ser vistos ou criados na página de produtos.'}
+                    img={Glasses}
+                    alt={'Óculos'}
+                    button={'Criar novo produto'}
+                    urlPage={'/dashboard/new-product'}
+                />
+                <CardDashboard
+                    title={'Caixa'}
+                    body={'Quer realizar uma venda? Utilize o caixa para isso!'}
+                    img={Box}
+                    alt={'Caixa'}
+                    button={'Ir para o caixa'}
+                    urlPage={''}
+                />
+                <CardDashboard
+                    title={'Clientes'}
+                    body={'Sabe aquele cliente que já é de casa? Adiciona ele aqui na loja para ter sempre o contato dele.'}
+                    img={Client}
+                    alt={'Cliente'}
+                    button={'Adicionar cliente'}
+                    urlPage={'/dashboard/new-client'}
+                />
+                <CardDashboard
+                    title={'Relatório'}
+                    body={'Ta afim de ver quanto vendeu esse mês? Quais produtos estão saindo bastante? Você pode olhar em relatórios.'}
+                    img={Report}
+                    alt={'Cliente'}
+                    button={'Olhar relatórios'}
+                    urlPage={'/dashboard/sales-report'}
+                />
             </Grid>
         </Dashboard>
     );

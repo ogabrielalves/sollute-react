@@ -40,7 +40,7 @@ function Client() {
                         fullWidth
                         variant="contained"
                         startIcon={<AddCircleIcon />}
-                        onClick={() => window.location.href = "/dashboard/new-client"}
+                        onClick={() => navigate("/dashboard/new-client")}
                     >
                         Novo Cliente
                     </Button>
