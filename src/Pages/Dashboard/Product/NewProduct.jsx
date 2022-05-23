@@ -48,7 +48,12 @@ function NewProduct() {
                 "cnpj": empresa.cnpj,
                 "qtdProdutosVendidos": empresa.qtdProdutosVendidos,
                 "totalProdutosVendidos": empresa.totalProdutosVendidos,
-                "autenticado": empresa.autenticado
+                "autenticado": empresa.autenticado,
+                "cep": empresa.cep,
+                "uf": empresa.uf,
+                "cidade": empresa.cidade,
+                "logradouro": empresa.logradouro,
+                "pontoReferencia": empresa.pontoReferencia
             },
             "codigo": codigo,
             "nome": nome,
@@ -122,7 +127,6 @@ function NewProduct() {
                     <Grid item xs={12} md={4}>
                         <TextField required fullWidth id="outlined-basic" label="Preço de venda" variant="outlined" onChange={(evt) => setPrecoVenda(evt.target.value)} />
                     </Grid>
-
 
                     <Grid container spacing={3} sx={styleGridButton}>
                         <Grid item xs={12} md={3}>

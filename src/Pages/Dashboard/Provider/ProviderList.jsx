@@ -53,6 +53,7 @@ function ProviderList() {
 }
 
 const columns = [
+    
     {
         field: "idFornecedor",
         headerName: "ID",

@@ -39,7 +39,12 @@ function NewEmployee() {
                 "cnpj": empresa.cnpj,
                 "qtdProdutosVendidos": empresa.qtdProdutosVendidos,
                 "totalProdutosVendidos": empresa.totalProdutosVendidos,
-                "autenticado": empresa.autenticado
+                "autenticado": empresa.autenticado,
+                "cep": empresa.cep,
+                "uf": empresa.uf,
+                "cidade": empresa.cidade,
+                "logradouro": empresa.logradouro,
+                "pontoReferencia": empresa.pontoReferencia
             },
             "nomeFuncionario": nome,
             "cpfFuncionario": cpf,
@@ -106,8 +111,6 @@ function NewEmployee() {
             </form>
         </Dashboard>
     );
-
-
 
 }
 

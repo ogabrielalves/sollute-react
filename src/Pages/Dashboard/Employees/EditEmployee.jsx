@@ -33,7 +33,7 @@ function EditEmployee() {
     const [salario, setSalario] = useState('');
 
     function deleteEmployee() {
-        axios.delete(`http://localhost:8080/empresas/deletar-funcionario/${emplyoeeId}/${empresa?.id}`)
+        axios.delete(`http://localhost:8080/empresas/deletar-funcionario/${emplyoeeId}/${empresa?.idEmpresa}`)
             .then((res) => {
                 if (res.status === 200) {
                     notify('Funcionario excluido com sucesso!', 'sucess')
@@ -51,7 +51,7 @@ function EditEmployee() {
             "cpfFuncionario": cpfFuncionario,
             "telefoneFuncionario": telefoneFuncionario,
             "salario": salario
-        }, empresa?.id)) {
+        }, empresa?.idEmpresa)) {
             navigate(-1)
         }
     }

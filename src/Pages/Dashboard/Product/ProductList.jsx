@@ -53,7 +53,6 @@ function ProductList() {
     )
 }
 
-
 const columns = [
     {
         field: "codigo",
