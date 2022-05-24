@@ -60,7 +60,7 @@ function DashboardContent(props) {
     },
     {
         title: 'Caixa',
-        link: '',
+        link: '/dashboard/casher',
         icon: <PointOfSaleIcon />
     },
     {
