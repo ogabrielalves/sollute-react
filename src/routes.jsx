@@ -22,6 +22,7 @@ import Client from "./Pages/Dashboard/Client/Client";
 import NewClient from "./Pages/Dashboard/Client/NewClient";
 import EditClient from "./Pages/Dashboard/Client/EditClient";
 import SalesReport from "./Pages/Dashboard/SalesReport/SalesReport";
+import Configuration from "./Pages/Dashboard/Configuration/Configuration";
 
 function Rotas() {
 
@@ -34,6 +35,7 @@ function Rotas() {
                 <Route exact path="/contact" element={<Contact />} />
                 <Route exact path="/plans" element={<Plans />} />
                 <Route exact path="/dashboard" element={<HomeDashboard />} />
+                <Route exact path="/dashboard/configuration" element={<Configuration />} />
                 <Route element={<NotFound />} />
 
                 <Route exact path="/dashboard/product" element={<Product />} />

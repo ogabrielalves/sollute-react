@@ -90,7 +90,7 @@ export default function CustomizedMenus() {
                 open={open}
                 onClose={handleClose}
             >
-                <MenuItem onClick={() => window.location.href = "/configuration"} disableRipple>
+                <MenuItem onClick={() => navigate("/dashboard/configuration")} disableRipple>
                     <SettingsIcon />
                     Configurações
                 </MenuItem>                
