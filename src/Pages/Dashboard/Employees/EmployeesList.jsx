@@ -55,11 +55,6 @@ function EmployeesList() {
 
 const columns = [
     {
-        field: "idFuncionario",
-        headerName: "ID",
-        width: 90
-    },
-    {
         field: "nomeFuncionario",
         headerName: "Nome",
         width: 290

@@ -39,7 +39,7 @@ function NewProduct() {
     async function postProduto() {
         const service = new ProductService()
         if (await service.postProdutos({
-            "empresa": {
+            "fkEmpresa": {
                 "idEmpresa": empresa.idEmpresa,
                 "email": empresa.email,
                 "senha": empresa.senha,

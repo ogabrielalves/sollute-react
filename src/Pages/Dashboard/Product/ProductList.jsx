@@ -70,7 +70,7 @@ const columns = [
         width: 200
     },
     {
-        field: "estoqueInicial",
+        field: "estoque",
         headerName: "Quantidade em estoque",
         width: 200
     },

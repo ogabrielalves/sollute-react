@@ -22,7 +22,12 @@ import Client from "./Pages/Dashboard/Client/Client";
 import NewClient from "./Pages/Dashboard/Client/NewClient";
 import EditClient from "./Pages/Dashboard/Client/EditClient";
 import SalesReport from "./Pages/Dashboard/SalesReport/SalesReport";
+<<<<<<< HEAD
 import Configuration from "./Pages/Dashboard/Configuration/Configuration";
+=======
+import Casher from "./Pages/Dashboard/Casher/Casher";
+import NewCasher from "./Pages/Dashboard/Casher/NewCasher";
+>>>>>>> 48e1fad91fddecbc7c7f278aa86b6d542d716e93
 
 function Rotas() {
 
@@ -53,6 +58,9 @@ function Rotas() {
                 <Route exact path="/dashboard/provider" element={<Provider />} />
                 <Route exact path="/dashboard/new-provider" element={<NewProvider />} />
                 <Route exact path="/dashboard/edit-provider/:providerId" element={<EditProvider />} />
+
+                <Route exact path="/dashboard/casher" element={<Casher />} />
+                <Route exact path="/dashboard/new-casher" element={<NewCasher />} />
 
                 <Route exact path="/dashboard/sales-report" element={<SalesReport />} />
             </Routes>
