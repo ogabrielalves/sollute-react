@@ -11,7 +11,6 @@ import {
 
 import SearchIcon from '@mui/icons-material/Search';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
-import { useNavigate } from 'react-router-dom';
 import CasherService from '../../../Services/Casher/CasherService';
 
 const center = {
@@ -31,8 +30,6 @@ function Casher() {
     const [values, setValues] = useState({
         amount: ''
     });
-
-    const navigate = useNavigate();
 
     const { empresa } = useAuth();
 

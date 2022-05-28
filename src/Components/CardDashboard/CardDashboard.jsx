@@ -11,7 +11,7 @@ export default function CardDashboard({ body, title, img, alt, button, urlPage }
   const navigate = useNavigate();
 
   return (
-    <Card sx={{ maxWidth: 345, backgroundColor: '#f8f4f4' }}>
+    <Card sx={{ maxWidth: 345, backgroundColor: '#f8f4f4', mr: 5, mb: 4 }}>
       <CardActionArea>
         <CardMedia
           component="img"
