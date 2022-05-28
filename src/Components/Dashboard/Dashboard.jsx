@@ -48,7 +48,6 @@ function DashboardContent(props) {
 
     const [open, setOpen] = React.useState(!matches);
 
-
     const toggleDrawer = () => {
         setOpen(!open);
     };
@@ -72,11 +71,6 @@ function DashboardContent(props) {
         title: 'Relatório de vendas',
         link: '/dashboard/sales-report',
         icon: <EqualizerIcon />,
-    },
-    {
-        title: 'Estoque',
-        link: '',
-        icon: <InventoryIcon />
     },
     {
         title: 'Funcionário',
@@ -193,7 +187,7 @@ function DashboardContent(props) {
                     <AppBar position="fixed" sx={{ maxHeight: 65, backgroundColor: "#784DFF" }} open={open}>
                         <Toolbar
                             sx={{
-                                pr: '24px', // keep right padding when drawer closed
+                                pr: '24px',
                             }}
                         >
                             <IconButton
@@ -237,7 +231,6 @@ function DashboardContent(props) {
                             </Paper>
                         </Grid>
                     </Grid>
-
 
                 </Container>
             </Box>

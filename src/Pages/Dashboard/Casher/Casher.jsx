@@ -1,5 +1,6 @@
-import { React, useState } from 'react';
 import axios from 'axios';
+import { React, useState, useEffect } from 'react';
+import CashierList from './CashierList';
 import useAuth from '../../../Hooks/useAuth';
 import { notify } from '../../../Components/Notify/Notify';
 import Dashboard from '../../../Components/Dashboard/Dashboard';
@@ -11,13 +12,15 @@ import {
 import SearchIcon from '@mui/icons-material/Search';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import { useNavigate } from 'react-router-dom';
-import ListCasher from '../../../Components/ListCasher/ListCasher';
+import CasherService from '../../../Services/Casher/CasherService';
 
 const center = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center'
 }
+
+const service = new CasherService();
 
 function Casher() {
 
@@ -36,13 +39,32 @@ function Casher() {
     const [valorEntrada, setValorEntrada] = useState('');
     const [valorSaida, setValorSaida] = useState('');
     const [valorAtual, setValorAtual] = useState('');
+    const [contador, setContador] = useState(0)
+
+    useEffect(() => {
+
+        if (!empresa) return null;
+        getValue();
+
+    }, [empresa])
+
+    function getValue() {
+        axios.get(`http://localhost:8080/empresas/pegar-saldo/${empresa?.idEmpresa}`)
+            .then((res) => {
+                if (res.status === 200) {
+                    setValorAtual(res.data)
+                }
+            })
+    }
 
     function addValue() {
         axios.put(`http://localhost:8080/empresas/adicionar-valor-caixa/${empresa?.idEmpresa}/${valorEntrada}`)
             .then((res) => {
                 if (res.status === 200) {
                     notify('Valor adicionado com sucesso!', 'sucess')
+                    getValue();
                     setValorAtual(res.data)
+                    setValorEntrada(" ")
                 }
             }).catch((err) => {
                 notify('Erro ao adicionar o valor!', 'error')
@@ -54,6 +76,7 @@ function Casher() {
             .then((res) => {
                 if (res.status === 200) {
                     notify('Valor removido com sucesso!', 'sucess')
+                    getValue();
                     setValorAtual(res.data)
                 }
             }).catch((err) => {
@@ -93,8 +116,12 @@ function Casher() {
                         fullWidth
                         variant="contained"
                         startIcon={<SearchIcon />}
-                        onClick={() => navigate('/dashboard/new-casher')}
-
+                        onClick={() => service.sellCashier(empresa?.idEmpresa).
+                            then(() => {
+                                getValue()
+                                setContador(contador + 1)
+                            })
+                        }
                     >
                         Confirmar venda
                     </Button>
@@ -125,13 +152,10 @@ function Casher() {
                 </Grid>
 
                 <Grid item xs={12}>
-                    <ListCasher />
+                    <CashierList contador={contador} />
                 </Grid>
 
-
-
             </Grid>
-
 
         </Dashboard>
     </>);

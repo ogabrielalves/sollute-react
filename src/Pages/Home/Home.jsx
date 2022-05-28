@@ -12,7 +12,10 @@ function Home() {
       <div className='container'>
         <div className='containerText'>
           <h1>Estoque Certo</h1>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+          <p>A Empresa Sollute agora tem o Estoque Certo, </p>
+          <p>O melhor serviço para te ajudar com o seu comercio.</p>
+          <p>O que há de melhor em te ajudar a ser maior,</p>
+          <p>Integração, facilidade, automatização, eficiência e agilidade em um só serviço.</p>
           <Button
             style={{ marginTop: 15, fontSize: '1.2rem' }}
             variant="contained"

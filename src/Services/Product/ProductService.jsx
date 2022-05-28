@@ -6,7 +6,6 @@ const headers = {
   'Content-Type': 'application/json'
 };
 
-
 class ProductService {
 
   async getProdutos(idEmpresa) {
@@ -34,6 +33,5 @@ class ProductService {
       });
   }
 }
-
 
 export default ProductService;

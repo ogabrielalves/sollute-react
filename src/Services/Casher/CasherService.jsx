@@ -8,17 +8,31 @@ const headers = {
 
 class CasherService {
 
-    async getFuncionarios(idEmpresa) {
-      return await axios.get(`${urlBase}/listar-produtos/${idEmpresa}`, {
-        headers: headers
-      })
-        .then(res => res.data)
-        .catch((err) => {
-          console.error(`Request Failed ${err}`);
-        });
-    }
-  
+  async getCashierList(idEmpresa) {
+    return await axios.get(`${urlBase}/listar-produtos-carrinho/${idEmpresa}`, {
+      headers: headers
+    })
+      .then(res => res.data)
+      .catch((err) => {
+        console.error(`Request Failed ${err}`);
+      });
   }
-  
-  
-  export default CasherService;
+
+  async sellCashier(idEmpresa) {
+    return await axios.put(`${urlBase}/vender-produtos-carrinho/${idEmpresa}`, {
+      headers: headers
+    })
+      .then(res => {
+        notify('Carrinho vendido com sucesso!', 'sucess')
+        return res.data
+      })
+      .catch((err) => {
+        notify('Erro ao vender os produtos.', 'error')
+        console.error(`Request Failed ${err}`);
+        return null
+      });
+  }
+
+}
+
+export default CasherService;

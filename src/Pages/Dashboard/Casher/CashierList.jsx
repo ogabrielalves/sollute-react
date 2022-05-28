@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import ProductService from '../../../Services/Product/ProductService';
+import CasherService from '../../../Services/Casher/CasherService';
 import { AuthContext } from "../../../Context/AuthContext";
 import { useNavigate } from 'react-router-dom';
 
-const service = new ProductService()
+const service = new CasherService()
 
-function ProductList() {
+function CashierList(props) {
 
     const navigate = useNavigate();
 
@@ -23,11 +23,12 @@ function ProductList() {
         console.log(empresa)
         getData()
         async function getData() {
-            const apiResponse = await service.getProdutos(empresa?.idEmpresa)
+            const apiResponse = await service.getCashierList(empresa?.idEmpresa)
             console.log(apiResponse)
             setItems(apiResponse)
         }
-    }, [empresa])
+
+    }, [empresa, props])
 
     return (
         <DataGrid
@@ -37,11 +38,11 @@ function ProductList() {
             autoWidth={true}
             rowHeight={70}
             columns={columns}
-            getRowId={(row) => row.codigo}
-            onCellClick={(params) => {
-                console.log(params.row)
-                navigate(`/dashboard/edit-product/${params.row.codigo}`)
-            }}
+            getRowId={(row) => row.idCarrinho}
+            // onCellClick={(params) => {
+            //     console.log(params.row)
+            //     navigate(`/dashboard/edit-product/${params.row.idCarrinho}`)
+            // }}
             rows={items}
             page={page}
             pageSize={pageSize}
@@ -57,39 +58,29 @@ function ProductList() {
 const columns = [
     {
         field: "codigo",
-        headerName: "Código do produto",
+        headerName: "Código do Produto",
         width: 290
     },
     {
         field: "nome",
-        headerName: "Nome",
+        headerName: "Nome do Produto",
         width: 290
     },
     {
-        field: "precoVenda",
-        headerName: "Preço",
-        width: 200
-    },
-    {
-        field: "estoque",
-        headerName: "Quantidade em estoque",
-        width: 200
-    },
-    {
         field: "marca",
-        headerName: "Marca",
-        width: 220
+        headerName: "Marca do Produto",
+        width: 290
     },
     {
-        field: "peso",
-        headerName: "Peso",
-        width: 120
+        field: "qtdVenda",
+        headerName: "Quantidade",
+        width: 290
     },
     {
-        field: "categoria",
-        headerName: "Categoria",
-        width: 180
+        field: "valorVenda",
+        headerName: "Valor dos Produtos",
+        width: 200
     }
 ];
 
-export default ProductList;
+export default CashierList;
