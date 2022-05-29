@@ -2,13 +2,10 @@ import React, { useState, useEffect, useContext } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import CasherService from '../../../Services/Casher/CasherService';
 import { AuthContext } from "../../../Context/AuthContext";
-import { useNavigate } from 'react-router-dom';
 
 const service = new CasherService()
 
 function CashierList(props) {
-
-    const navigate = useNavigate();
 
     const { empresa } = useContext(AuthContext)
 

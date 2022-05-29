@@ -14,27 +14,21 @@ function Home() {
 
     return (
         <Dashboard>
-            <Grid container justifyContent={'space-between'}>
+            <Grid container justifyContent={'center'} alignItems={'center'}>
                 <Grid item xs={12} textAlign={'center'} marginBottom={5}>
                     <Typography variant="h3">Olá, {empresa?.nomeFantasia}</Typography>
                     <Typography variant="h5">Olha essas dicas que preparamos para você.</Typography>
                 </Grid>
-                <CardDashboard
-                    title={'Produtos'}
-                    body={'Seus produtos podem ser vistos ou criados na página de produtos.'}
-                    img={Glasses}
-                    alt={'Óculos'}
-                    button={'Criar novo produto'}
-                    urlPage={'/dashboard/new-product'}
-                />
+
                 <CardDashboard
                     title={'Caixa'}
-                    body={'Quer realizar uma venda? Utilize o caixa para isso!'}
+                    body={'Quer realizar uma venda? Vá até produtos, clique no produto que deseja vender e finalize no caixa.'}
                     img={Box}
                     alt={'Caixa'}
                     button={'Ir para o caixa'}
                     urlPage={''}
                 />
+
                 <CardDashboard
                     title={'Clientes'}
                     body={'Sabe aquele cliente que já é de casa? Adiciona ele aqui na loja para ter sempre o contato dele.'}
@@ -43,6 +37,7 @@ function Home() {
                     button={'Adicionar cliente'}
                     urlPage={'/dashboard/new-client'}
                 />
+
                 <CardDashboard
                     title={'Relatório'}
                     body={'Ta afim de ver quanto vendeu esse mês? Quais produtos estão saindo bastante? Você pode olhar em relatórios.'}
@@ -51,8 +46,18 @@ function Home() {
                     button={'Olhar relatórios'}
                     urlPage={'/dashboard/sales-report'}
                 />
+
+                <CardDashboard
+                    title={'Produtos'}
+                    body={'Seus produtos podem ser vistos, criados, editados e até vendidos na página de produtos.'}
+                    img={Glasses}
+                    alt={'Óculos'}
+                    button={'Criar novo produto'}
+                    urlPage={'/dashboard/new-product'}
+                />
+
             </Grid>
-        </Dashboard>
+        </Dashboard >
     );
 }
 
