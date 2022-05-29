@@ -9,9 +9,10 @@ import {
     InputAdornment
 } from '@mui/material';
 
-import SearchIcon from '@mui/icons-material/Search';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import PaidIcon from '@mui/icons-material/Paid';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
-import { useNavigate } from 'react-router-dom';
 import CasherService from '../../../Services/Casher/CasherService';
 
 const center = {
@@ -31,8 +32,6 @@ function Casher() {
     const [values, setValues] = useState({
         amount: ''
     });
-
-    const navigate = useNavigate();
 
     const { empresa } = useAuth();
 
@@ -58,30 +57,37 @@ function Casher() {
     }
 
     function addValue() {
-        axios.put(`http://localhost:8080/empresas/adicionar-valor-caixa/${empresa?.idEmpresa}/${valorEntrada}`)
-            .then((res) => {
-                if (res.status === 200) {
-                    notify('Valor adicionado com sucesso!', 'sucess')
-                    getValue();
-                    setValorAtual(res.data)
-                    setValorEntrada(" ")
-                }
-            }).catch((err) => {
-                notify('Erro ao adicionar o valor!', 'error')
-            });
+        if (valorEntrada == 0) {
+            return notify('Insira um valor válido!', 'error')
+        } else {
+            axios.put(`http://localhost:8080/empresas/adicionar-valor-caixa/${empresa?.idEmpresa}/${valorEntrada}`)
+                .then((res) => {
+                    if (res.status === 200) {
+                        notify('Valor creditado com sucesso!', 'sucess')
+                        getValue();
+                        setValorAtual(res.data)
+                    }
+                }).catch((err) => {
+                    notify('Valor inválido!', 'error')
+                });
+        }
     }
 
     function removeValue() {
-        axios.put(`http://localhost:8080/empresas/remover-valor-caixa/${empresa?.idEmpresa}/${valorSaida}`)
-            .then((res) => {
-                if (res.status === 200) {
-                    notify('Valor removido com sucesso!', 'sucess')
-                    getValue();
-                    setValorAtual(res.data)
-                }
-            }).catch((err) => {
-                notify('Erro ao remover o valor!', 'error')
-            });
+        if (valorSaida == 0) {
+            return notify('Insira um valor válido!', 'error')
+        } else {
+            axios.put(`http://localhost:8080/empresas/remover-valor-caixa/${empresa?.idEmpresa}/${valorSaida}`)
+                .then((res) => {
+                    if (res.status === 200) {
+                        notify('Valor debitado com sucesso!', 'sucess')
+                        getValue();
+                        setValorAtual(res.data)
+                    }
+                }).catch((err) => {
+                    notify('Saldo insuficiente!', 'error')
+                });
+        }
     }
 
     return (<>
@@ -89,7 +95,7 @@ function Casher() {
             <Grid container spacing={3} sx={center}>
                 <Grid item xs={12} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <LocalOfferIcon style={{ marginRight: '20px' }} />
-                    <h1>$ Caixa</h1>
+                    <h1>Caixa</h1>
                 </Grid>
                 <Grid item xs={12} md={2}>
                     <FormControl fullWidth sx={{ m: 1 }}>
@@ -115,7 +121,7 @@ function Casher() {
                     <Button
                         fullWidth
                         variant="contained"
-                        startIcon={<SearchIcon />}
+                        startIcon={<PaidIcon />}
                         onClick={() => service.sellCashier(empresa?.idEmpresa).
                             then(() => {
                                 getValue()
@@ -131,7 +137,7 @@ function Casher() {
                     <Button
                         fullWidth
                         variant="contained"
-                        startIcon={<SearchIcon />}
+                        startIcon={<AddIcon />}
                         onClick={() => { addValue() }}
 
                     >
@@ -143,7 +149,7 @@ function Casher() {
                     <Button
                         fullWidth
                         variant="contained"
-                        startIcon={<SearchIcon />}
+                        startIcon={<RemoveIcon />}
                         onClick={() => { removeValue() }}
 
                     >

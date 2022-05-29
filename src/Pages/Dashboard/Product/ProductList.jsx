@@ -27,6 +27,7 @@ function ProductList() {
             console.log(apiResponse)
             setItems(apiResponse)
         }
+        
     }, [empresa])
 
     return (

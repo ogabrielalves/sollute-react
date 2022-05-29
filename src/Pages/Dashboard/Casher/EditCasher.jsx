@@ -3,15 +3,13 @@ import axios from 'axios';
 import Dashboard from '../../../Components/Dashboard/Dashboard';
 import useAuth from '../../../Hooks/useAuth';
 import { TextField, Grid, Button } from '@mui/material';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { notify } from '../../../Components/Notify/Notify';
-import MiddleDividers from '../../../Components/MiddleDividers/MiddleDividers';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
-import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 // Style
 const styleGridButton = {
@@ -21,9 +19,7 @@ const styleGridButton = {
     marginTop: '20px'
 }
 
-function EditProduct() {
-
-    const { productId } = useParams();
+function EditCasher() {
 
     const navigate = useNavigate();
 
@@ -32,7 +28,7 @@ function EditProduct() {
     const [qtdProduto, setQtdProduto] = useState('');
 
     function deleteProduto() {
-        axios.delete(`http://localhost:8080/empresas/deletar-produto/${productId}/${empresa?.idEmpresa}`)
+        axios.delete(`http://localhost:8080/empresas/carrinho-apagar-produto/A456/${empresa?.idEmpresa}`)
             .then((res) => {
                 if (res.status === 200) {
                     notify('Produto deletado com sucesso!', 'sucess')
@@ -42,11 +38,11 @@ function EditProduct() {
             });
     }
 
-    function addCarrinho() {
-        axios.post(`http://localhost:8080/empresas/adicionar-carrinho/${productId}/${empresa?.cnpj}/${qtdProduto}`)
+    function atualizarCarrinho() {
+        axios.put(`http://localhost:8080/empresas/atualizar-carrinho/A456/${empresa?.idEmpresa}/${qtdProduto}`)
             .then((res) => {
                 if (res.status === 200) {
-                    notify('Produto adicionado ao carrinho com sucesso!', 'sucess')
+                    notify('Quantidade atualiza com sucesso!', 'sucess')
                 }
             }).catch((err) => {
                 notify('Estoque insuficiente!', 'error')
@@ -57,47 +53,15 @@ function EditProduct() {
         <Dashboard>
             <Grid container spacing={3}>
                 <Grid item xs={12} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <LocalOfferIcon style={{ marginRight: '20px' }} />
-                    <h1>Editar Produto</h1>
-                </Grid>
-
-                <Grid item xs={12}>
-                    <MiddleDividers />
-                </Grid>
-
-                <Grid item xs={12}>
-                    <h2>Estoque</h2>
-                </Grid>
-                <Grid item xs={12} md={4}>
-                    <TextField fullWidth id="outlined-basic" label="Estoque Inicial" variant="outlined" />
-                </Grid>
-                <Grid item xs={12} md={4}>
-                    <TextField fullWidth id="outlined-basic" label="Estoque Mínimo" variant="outlined" />
-                </Grid>
-                <Grid item xs={12} md={4}>
-                    <TextField fullWidth id="outlined-basic" label="Estoque Máximo" variant="outlined" />
-                </Grid>
-
-
-                <Grid item xs={12}>
-                    <h2>Preços</h2>
-                </Grid>
-                <Grid item xs={12} md={4}>
-                    <TextField fullWidth id="outlined-basic" label="Preço de compra" variant="outlined" />
-                </Grid>
-                <Grid item xs={12} md={4}>
-                    <TextField fullWidth id="outlined-basic" label="Preço de venda" variant="outlined" />
-                </Grid>
-
-                <Grid item xs={12}>
-                    <MiddleDividers />
+                    <ShoppingCartIcon style={{ marginRight: '20px' }} />
+                    <h1>Editar Produto do Carrinho</h1>
                 </Grid>
 
                 <Grid item xs={12}>
                     <h2>Venda</h2>
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <TextField fullWidth id="outlined-basic" label="Quantidade a vender" variant="outlined" onChange={(evt) => setQtdProduto(evt.target.value)} />
+                    <TextField fullWidth id="outlined-basic" label="Nova quantidade" variant="outlined" onChange={(evt) => setQtdProduto(evt.target.value)} />
                 </Grid>
 
                 <Grid container spacing={3} sx={styleGridButton}>
@@ -106,6 +70,7 @@ function EditProduct() {
                             fullWidth
                             variant="contained"
                             startIcon={<CheckCircleIcon />}
+                            onClick={() => { atualizarCarrinho() }}
                         >
                             Atualizar
                         </Button>
@@ -123,19 +88,9 @@ function EditProduct() {
                     <Grid item xs={12} md={2.5}>
                         <Button
                             fullWidth
-                            variant="contained"
-                            onClick={() => { addCarrinho() }}
-                            startIcon={<AddShoppingCartIcon />}
-                        >
-                            Adicionar ao Carrinho
-                        </Button>
-                    </Grid>
-                    <Grid item xs={12} md={2.5}>
-                        <Button
-                            fullWidth
                             variant="outlined"
                             startIcon={<ArrowBackIcon />}
-                            onClick={() => navigate("/dashboard/product")}
+                            onClick={() => navigate("/dashboard/casher")}
                         >
                             Voltar
                         </Button>
@@ -146,4 +101,4 @@ function EditProduct() {
     );
 }
 
-export default EditProduct;
+export default EditCasher;

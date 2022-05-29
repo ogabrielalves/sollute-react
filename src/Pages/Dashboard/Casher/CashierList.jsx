@@ -39,10 +39,10 @@ function CashierList(props) {
             rowHeight={70}
             columns={columns}
             getRowId={(row) => row.idCarrinho}
-            // onCellClick={(params) => {
-            //     console.log(params.row)
-            //     navigate(`/dashboard/edit-product/${params.row.idCarrinho}`)
-            // }}
+            onCellClick={(params) => {
+                console.log(params.row)
+                navigate(`/dashboard/edit-casher/${params.row.idCarrinho}`)
+            }}
             rows={items}
             page={page}
             pageSize={pageSize}
