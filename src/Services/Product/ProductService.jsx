@@ -48,6 +48,21 @@ class ProductService {
       });
   }
 
+    async patchUpload(obj, cnpj) {
+        return await axios.patch(`${urlBase}/upload-txt/${cnpj}`,
+            obj
+        )
+            .then(res => {
+                notify('Upload carregado com sucesso!', 'sucess')
+                return res.data
+            })
+            .catch((err) => {
+                notify('Erro ao tentar upload.', 'error')
+                console.error(`Request Failed ${err}`);
+                return null
+            });
+    }
+
   async getCsv(idEmpresa) {
     return await axios.get(`${urlBase}/relatorio-csv/${idEmpresa}`
     )
