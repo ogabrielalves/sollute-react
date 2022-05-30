@@ -6,7 +6,7 @@ import Dashboard from '../../../Components/Dashboard/Dashboard';
 import ProviderList from './ProviderList';
 import SearchIcon from '@mui/icons-material/Search';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 
 const center = {
     display: 'flex',
@@ -22,7 +22,7 @@ function Provider() {
         <Dashboard>
             <Grid container spacing={3} sx={center}>
                 <Grid item xs={12} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <LocalOfferIcon style={{ marginRight: '20px' }} />
+                    <SupervisedUserCircleIcon style={{ marginRight: '20px' }} />
                     <h1>Fornecedores</h1>
                 </Grid>
                 <Grid item xs={12} md={4}>

@@ -45,7 +45,7 @@ function EditClient() {
         if (await service.putCliente({
             "nomeCliente": nomeCliente,
             "telefoneCliente": telefone
-        }, empresa?.idEmpresa)) {
+        }, empresa?.idEmpresa, clientId)) {
             navigate(-1)
         }
     }

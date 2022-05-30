@@ -49,7 +49,7 @@ function EditProvider() {
             "telefoneFornecedor": telefone,
             "nomeProduto": nomeProduto,
             "qtdFornecida": qtdFornecida
-        }, empresa?.idEmpresa)) {
+        }, empresa?.idEmpresa, providerId)) {
             navigate(-1)
         }
     }
@@ -67,9 +67,6 @@ function EditProvider() {
                 <Grid item xs={12} md={3}>
                     <TextField fullWidth id="outlined-basic" label="Nome do Fornecedor" variant="outlined" onChange={(evt) => setNomeFornecedor(evt.target.value)} />
                 </Grid>
-                {/* <Grid item xs={12} md={4}>
-                    <TextField fullWidth id="outlined-basic" label="ID do Fornecedor" variant="outlined" />
-                </Grid> */}
                 <Grid item xs={12} md={3}>
                     <TextField fullWidth id="outlined-basic" label="Telefone do Fornecedor" variant="outlined" onChange={(evt) => setTelefone(evt.target.value)} />
                 </Grid>

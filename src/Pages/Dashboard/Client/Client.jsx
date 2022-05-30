@@ -2,12 +2,11 @@ import React from 'react';
 import { TextField, Grid, Button } from '@mui/material';
 import Dashboard from '../../../Components/Dashboard/Dashboard';
 
-
 import ClientList from './ClientList';
 import SearchIcon from '@mui/icons-material/Search';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import { useNavigate } from 'react-router-dom';
+import GroupIcon from '@mui/icons-material/Group';
 
 const center = {
     display: 'flex',
@@ -24,7 +23,7 @@ function Client() {
         <Dashboard>
             <Grid container spacing={3} sx={center}>
                 <Grid item xs={12} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <LocalOfferIcon style={{ marginRight: '20px' }} />
+                    <GroupIcon style={{ marginRight: '20px' }} />
                     <h1>Clientes</h1>
                 </Grid>
 

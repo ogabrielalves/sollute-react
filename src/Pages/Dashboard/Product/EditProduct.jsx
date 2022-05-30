@@ -6,6 +6,7 @@ import { TextField, Grid, Button } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import { notify } from '../../../Components/Notify/Notify';
 import MiddleDividers from '../../../Components/MiddleDividers/MiddleDividers';
+import ProductService from '../../../Services/Product/ProductService';
 
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
@@ -30,6 +31,11 @@ function EditProduct() {
     const { empresa } = useAuth();
 
     const [qtdProduto, setQtdProduto] = useState('');
+    const [estoque, setEstoque] = useState('');
+    const [estoqueMin, setEstoqueMin] = useState('');
+    const [estoqueMax, setEstoqueMax] = useState('');
+    const [precoCompra, setPrecoCompra] = useState('');
+    const [precoVenda, setPrecoVenda] = useState('');
 
     function deleteProduto() {
         axios.delete(`http://localhost:8080/empresas/deletar-produto/${productId}/${empresa?.idEmpresa}`)
@@ -53,6 +59,19 @@ function EditProduct() {
             });
     }
 
+    async function putProduct() {
+        const service = new ProductService()
+        if (await service.putProduct({
+            "estoque": estoque,
+            "estoqueMin": estoqueMin,
+            "estoqueMax": estoqueMax,
+            "precoCompra": precoCompra,
+            "precoVenda": precoVenda
+        }, empresa?.idEmpresa, productId)) {
+            navigate(-1)
+        }
+    }
+
     return (
         <Dashboard>
             <Grid container spacing={3}>
@@ -69,13 +88,13 @@ function EditProduct() {
                     <h2>Estoque</h2>
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <TextField fullWidth id="outlined-basic" label="Estoque Inicial" variant="outlined" />
+                    <TextField fullWidth id="outlined-basic" label="Estoque" variant="outlined" onChange={(evt) => setEstoque(evt.target.value)} />
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <TextField fullWidth id="outlined-basic" label="Estoque Mínimo" variant="outlined" />
+                    <TextField fullWidth id="outlined-basic" label="Estoque Mínimo" variant="outlined" onChange={(evt) => setEstoqueMin(evt.target.value)} />
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <TextField fullWidth id="outlined-basic" label="Estoque Máximo" variant="outlined" />
+                    <TextField fullWidth id="outlined-basic" label="Estoque Máximo" variant="outlined" onChange={(evt) => setEstoqueMax(evt.target.value)} />
                 </Grid>
 
 
@@ -83,10 +102,10 @@ function EditProduct() {
                     <h2>Preços</h2>
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <TextField fullWidth id="outlined-basic" label="Preço de compra" variant="outlined" />
+                    <TextField fullWidth id="outlined-basic" label="Preço de compra" variant="outlined" onChange={(evt) => setPrecoCompra(evt.target.value)} />
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <TextField fullWidth id="outlined-basic" label="Preço de venda" variant="outlined" />
+                    <TextField fullWidth id="outlined-basic" label="Preço de venda" variant="outlined" onChange={(evt) => setPrecoVenda(evt.target.value)} />
                 </Grid>
 
                 <Grid item xs={12}>
@@ -106,6 +125,9 @@ function EditProduct() {
                             fullWidth
                             variant="contained"
                             startIcon={<CheckCircleIcon />}
+                            onClick={() => {
+                                putProduct()
+                            }}
                         >
                             Atualizar
                         </Button>

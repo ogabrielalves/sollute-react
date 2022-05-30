@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom';
 
 import SearchIcon from '@mui/icons-material/Search';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import EmployeesList from './EmployeesList';
+import PersonIcon from '@mui/icons-material/Person';
 
 const center = {
     display: 'flex',
@@ -22,7 +22,7 @@ function Employees() {
         <Dashboard>
             <Grid container spacing={3} sx={center}>
                 <Grid item xs={12} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <LocalOfferIcon style={{ marginRight: '20px' }} />
+                    <PersonIcon style={{ marginRight: '20px' }} />
                     <h1>Funcionarios</h1>
                 </Grid>
                 <Grid item xs={12} md={6}>

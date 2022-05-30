@@ -57,7 +57,7 @@ function Rotas() {
                 <Route exact path="/dashboard/edit-provider/:providerId" element={<EditProvider />} />
 
                 <Route exact path="/dashboard/casher" element={<Casher />} />
-                <Route exact path="/dashboard/edit-casher/:casherId" element={<EditCasher />} />
+                <Route exact path="/dashboard/edit-casher/:codigo" element={<EditCasher />} />
 
                 <Route exact path="/dashboard/sales-report" element={<SalesReport />} />
             </Routes>

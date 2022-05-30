@@ -2,10 +2,13 @@ import React, { useState, useEffect, useContext } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import CasherService from '../../../Services/Casher/CasherService';
 import { AuthContext } from "../../../Context/AuthContext";
+import { useNavigate } from 'react-router-dom';
 
 const service = new CasherService()
 
 function CashierList(props) {
+
+    const navigate = useNavigate();
 
     const { empresa } = useContext(AuthContext)
 
@@ -35,10 +38,10 @@ function CashierList(props) {
             autoWidth={true}
             rowHeight={70}
             columns={columns}
-            getRowId={(row) => row.idCarrinho}
+            getRowId={(row) => row.codigo}
             onCellClick={(params) => {
                 console.log(params.row)
-                navigate(`/dashboard/edit-casher/${params.row.idCarrinho}`)
+                navigate(`/dashboard/edit-casher/${params.row.codigo}`)
             }}
             rows={items}
             page={page}

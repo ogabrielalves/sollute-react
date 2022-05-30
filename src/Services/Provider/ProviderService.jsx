@@ -33,8 +33,8 @@ class ProviderService {
         });
     }
 
-    async putProvider(obj, idEmpresa) {
-      return await axios.put(`${urlBase}/editar-fornecedor/${idEmpresa}`,
+    async putProvider(obj, idEmpresa, idFornecedor) {
+      return await axios.put(`${urlBase}/editar-fornecedor/${idEmpresa}/${idFornecedor}`,
         obj
       )
         .then(res => {

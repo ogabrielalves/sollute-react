@@ -32,6 +32,41 @@ class ProductService {
         return null
       });
   }
+
+  async putProduct(obj, idEmpresa, idProduto) {
+    return await axios.put(`${urlBase}/editar-produto/${idEmpresa}/${idProduto}`,
+      obj
+    )
+      .then(res => {
+        notify('Produto editado com sucesso!', 'sucess')
+        return res.data
+      })
+      .catch((err) => {
+        notify('Erro ao editar o Produto.', 'error')
+        console.error(`Request Failed ${err}`);
+        return null
+      });
+  }
+
+  async getCsv(idEmpresa) {
+    return await axios.get(`${urlBase}/relatorio-csv/${idEmpresa}`
+    )
+      .then(res => {
+        notify('Download do arquivo CSV feito com sucesso!', 'sucess')
+        //return res.data
+        const url = window.URL.createObjectURL(new Blob([res.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'produto.csv'); //or any other extension
+        document.body.appendChild(link);
+        link.click();
+      })
+      .catch((err) => {
+        notify('Erro ao baixar o arquivo.', 'error')
+        console.error(`Request Failed ${err}`);
+        return null
+      });
+  }
 }
 
 export default ProductService;

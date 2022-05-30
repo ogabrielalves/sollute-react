@@ -33,8 +33,8 @@ class EmployeesService {
         });
     }
 
-    async putEmployee(obj, idEmpresa) {
-      return await axios.put(`${urlBase}/editar-funcionario/${idEmpresa}`,
+    async putEmployee(obj, idEmpresa, idFuncionario) {
+      return await axios.put(`${urlBase}/editar-funcionario/${idEmpresa}/${idFuncionario}`,
         obj
       )
         .then(res => {

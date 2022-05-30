@@ -34,8 +34,8 @@ class ClientService {
       });
   }
 
-  async putCliente(obj, idEmpresa) {
-    return await axios.put(`${urlBase}/editar-cliente/${idEmpresa}`,
+  async putCliente(obj, idEmpresa, idCliente) {
+    return await axios.put(`${urlBase}/editar-cliente/${idEmpresa}/${idCliente}`,
       obj
     )
       .then(res => {

@@ -12,7 +12,7 @@ import {
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import PaidIcon from '@mui/icons-material/Paid';
-import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
 import CasherService from '../../../Services/Casher/CasherService';
 
 const center = {
@@ -94,7 +94,7 @@ function Casher() {
         <Dashboard>
             <Grid container spacing={3} sx={center}>
                 <Grid item xs={12} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <LocalOfferIcon style={{ marginRight: '20px' }} />
+                    <PointOfSaleIcon style={{ marginRight: '20px' }} />
                     <h1>Caixa</h1>
                 </Grid>
                 <Grid item xs={12} md={2}>
@@ -122,8 +122,8 @@ function Casher() {
                         fullWidth
                         variant="contained"
                         startIcon={<PaidIcon />}
-                        onClick={() => service.sellCashier(empresa?.idEmpresa).
-                            then(() => {
+                        onClick={() => service.sellCashier(empresa?.idEmpresa)
+                            .then(() => {
                                 getValue()
                                 setContador(contador + 1)
                             })

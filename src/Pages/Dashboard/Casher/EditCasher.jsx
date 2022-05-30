@@ -3,7 +3,7 @@ import axios from 'axios';
 import Dashboard from '../../../Components/Dashboard/Dashboard';
 import useAuth from '../../../Hooks/useAuth';
 import { TextField, Grid, Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { notify } from '../../../Components/Notify/Notify';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
@@ -22,13 +22,17 @@ const styleGridButton = {
 function EditCasher() {
 
     const navigate = useNavigate();
+    
 
     const { empresa } = useAuth();
+    const { codigo } = useParams();
+    
+    console.log(codigo)
 
     const [qtdProduto, setQtdProduto] = useState('');
 
     function deleteProduto() {
-        axios.delete(`http://localhost:8080/empresas/carrinho-apagar-produto/A456/${empresa?.idEmpresa}`)
+        axios.delete(`http://localhost:8080/empresas/carrinho-apagar-produto/${codigo}/${empresa?.idEmpresa}`)
             .then((res) => {
                 if (res.status === 200) {
                     notify('Produto deletado com sucesso!', 'sucess')
@@ -39,7 +43,7 @@ function EditCasher() {
     }
 
     function atualizarCarrinho() {
-        axios.put(`http://localhost:8080/empresas/atualizar-carrinho/A456/${empresa?.idEmpresa}/${qtdProduto}`)
+        axios.put(`http://localhost:8080/empresas/atualizar-carrinho/${codigo}/${empresa?.idEmpresa}/${qtdProduto}`)
             .then((res) => {
                 if (res.status === 200) {
                     notify('Quantidade atualiza com sucesso!', 'sucess')

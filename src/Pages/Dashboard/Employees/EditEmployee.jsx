@@ -51,7 +51,7 @@ function EditEmployee() {
             "cpfFuncionario": cpfFuncionario,
             "telefoneFuncionario": telefoneFuncionario,
             "salario": salario
-        }, empresa?.idEmpresa)) {
+        }, empresa?.idEmpresa, emplyoeeId)) {
             navigate(-1)
         }
     }
