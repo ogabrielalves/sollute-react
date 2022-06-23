@@ -2,10 +2,14 @@ import React from 'react';
 import NavBar from '../../Components/NavBar/NavBar';
 import './Home.css';
 import ImagemCentral from '../../Assets/Image/Manage money-rafiki 1.svg';
+import { useNavigate } from 'react-router-dom';
+
 import Button from '@mui/material/Button';
 
 function Home() {
 
+  const navigate = useNavigate();
+  
   return (
     <div b>
       <NavBar />
@@ -19,7 +23,7 @@ function Home() {
           <Button
             style={{ marginTop: 15, fontSize: '1.2rem' }}
             variant="contained"
-            onClick={() => window.location.href = "/register"}
+            onClick={() => navigate("/register")}
           >
             Cadastre-se
           </Button>

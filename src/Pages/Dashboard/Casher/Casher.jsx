@@ -5,7 +5,12 @@ import useAuth from '../../../Hooks/useAuth';
 import { notify } from '../../../Components/Notify/Notify';
 import Dashboard from '../../../Components/Dashboard/Dashboard';
 import {
-    TextField, Grid, Button, FormControl, OutlinedInput, InputLabel,
+    TextField,
+    Grid,
+    Button,
+    FormControl,
+    OutlinedInput,
+    InputLabel,
     InputAdornment
 } from '@mui/material';
 
@@ -48,7 +53,7 @@ function Casher() {
     }, [empresa])
 
     function getValue() {
-        axios.get(`http://localhost:8080/empresas/pegar-saldo/${empresa?.idEmpresa}`)
+        axios.get(`http://localhost:8080/caixa/pegar-saldo/${empresa?.idEmpresa}`)
             .then((res) => {
                 if (res.status === 200) {
                     setValorAtual(res.data)
@@ -57,10 +62,10 @@ function Casher() {
     }
 
     function addValue() {
-        if (valorEntrada == 0) {
+        if (valorEntrada === 0) {
             return notify('Insira um valor válido!', 'error')
         } else {
-            axios.put(`http://localhost:8080/empresas/adicionar-valor-caixa/${empresa?.idEmpresa}/${valorEntrada}`)
+            axios.put(`http://localhost:8080/caixa/adicionar-valor-caixa/${empresa?.idEmpresa}/${valorEntrada}`)
                 .then((res) => {
                     if (res.status === 200) {
                         notify('Valor creditado com sucesso!', 'sucess')
@@ -74,10 +79,10 @@ function Casher() {
     }
 
     function removeValue() {
-        if (valorSaida == 0) {
+        if (valorSaida === 0) {
             return notify('Insira um valor válido!', 'error')
         } else {
-            axios.put(`http://localhost:8080/empresas/remover-valor-caixa/${empresa?.idEmpresa}/${valorSaida}`)
+            axios.put(`http://localhost:8080/caixa/remover-valor-caixa/${empresa?.idEmpresa}/${valorSaida}`)
                 .then((res) => {
                     if (res.status === 200) {
                         notify('Valor debitado com sucesso!', 'sucess')

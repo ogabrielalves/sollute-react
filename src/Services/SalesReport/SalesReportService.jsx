@@ -1,7 +1,6 @@
 import axios from 'axios';
-import { notify } from '../../Components/Notify/Notify';
 
-const urlBase = 'http://localhost:8080/empresas';
+const urlBase = 'http://localhost:8080/caixa';
 const headers = {
   'Content-Type': 'application/json'
 };
@@ -28,7 +27,7 @@ class SalesReportService {
     }
 
     async getTop5ProdutosVendidos(idEmpresa) {
-        return await axios.get(`${urlBase}/listar-produtos-ordem-maior/${idEmpresa}`, {
+        return await axios.get(`carrinho/listar-produtos-ordem-maior/${idEmpresa}`, {
             headers: headers
         })
             .then(res => res.data)

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { notify } from '../../Components/Notify/Notify';
 
-const urlBase = 'http://localhost:8080/empresas';
+const urlBase = 'http://localhost:8080/clientes';
 const headers = {
   'Content-Type': 'application/json'
 };

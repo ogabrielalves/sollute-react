@@ -5,7 +5,6 @@ import Home from './Pages/Home/Home';
 import Register from './Pages/Register/Register';
 import Login from './Pages/Login/Login';
 import Contact from './Pages/Contact/Contact';
-import Plans from './Pages/Plans/Plans';
 
 import Product from './Pages/Dashboard/Product/Product';
 import NewProduct from './Pages/Dashboard/Product/NewProduct';
@@ -35,7 +34,6 @@ function Rotas() {
                 <Route exact path="/register" element={<Register />} />
                 <Route exact path="/login" element={<Login />} />
                 <Route exact path="/contact" element={<Contact />} />
-                <Route exact path="/plans" element={<Plans />} />
                 <Route exact path="/dashboard" element={<HomeDashboard />} />
                 <Route exact path="/dashboard/configuration" element={<Configuration />} />
                 <Route element={<NotFound />} />
