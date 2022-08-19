@@ -7,7 +7,7 @@ RUN npm install
 
 COPY . .
 
-RUN REACT_APP_API_URL=http://34.233.33.120 SKIP_PREFLIGHT_CHECK=true npm run build --prefix client
+RUN REACT_APP_API_URL=http://34.233.33.120 
 
 RUN mv client/build build
 
