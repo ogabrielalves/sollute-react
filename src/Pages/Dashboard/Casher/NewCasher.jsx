@@ -30,18 +30,7 @@ function NewCasher() {
 
     async function postCasher() {
         const service = new CasherService();
-        if (await service.postCaixa({
-            "empresa": {
-                "email": empresa.email,
-                "senha": empresa.senha,
-                "nomeFantasia": empresa.nomeFantasia,
-                "razaoSocial": empresa.razaoSocial,
-                "cnpj": empresa.cnpj,
-                "qtdProdutosVendidos": empresa.qtdProdutosVendidos,
-                "totalProdutosVendidos": empresa.totalProdutosVendidos,
-                "autenticado": empresa.autenticado,
-                "id": empresa.id
-            },
+        if (await service.postCaixa({            
             "valor": valor,
             "qtdEntradas": qtdEntradas,
             "qtdSaidas": qtdSaidas,

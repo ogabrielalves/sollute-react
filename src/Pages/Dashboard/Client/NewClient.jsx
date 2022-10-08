@@ -26,23 +26,7 @@ function NewClient() {
 
     async function postClient() {
         const service = new ClientService()
-        if (await service.postClient({
-            "fkEmpresa": {
-                "idEmpresa": empresa.idEmpresa,
-                "email": empresa.email,
-                "senha": empresa.senha,
-                "nomeFantasia": empresa.nomeFantasia,
-                "razaoSocial": empresa.razaoSocial,
-                "cnpj": empresa.cnpj,
-                "qtdProdutosVendidos": empresa.qtdProdutosVendidos,
-                "totalProdutosVendidos": empresa.totalProdutosVendidos,
-                "autenticado": empresa.autenticado,
-                "cep": empresa.cep,
-                "uf": empresa.uf,
-                "cidade": empresa.cidade,
-                "logradouro": empresa.logradouro,
-                "pontoReferencia": empresa.pontoReferencia
-            },
+        if (await service.postClient({           
             "nomeCliente": nomeCliente,
             "telefoneCliente": telefone
         }, empresa?.idEmpresa)) {

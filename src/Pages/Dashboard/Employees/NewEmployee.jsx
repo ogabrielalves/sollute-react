@@ -29,23 +29,7 @@ function NewEmployee() {
 
     async function postEmployee() {
         const service = new EmployeesService()
-        if (await service.postFuncionarios({
-            "fkEmpresa": {
-                "idEmpresa": empresa.idEmpresa,
-                "email": empresa.email,
-                "senha": empresa.senha,
-                "nomeFantasia": empresa.nomeFantasia,
-                "razaoSocial": empresa.razaoSocial,
-                "cnpj": empresa.cnpj,
-                "qtdProdutosVendidos": empresa.qtdProdutosVendidos,
-                "totalProdutosVendidos": empresa.totalProdutosVendidos,
-                "autenticado": empresa.autenticado,
-                "cep": empresa.cep,
-                "uf": empresa.uf,
-                "cidade": empresa.cidade,
-                "logradouro": empresa.logradouro,
-                "pontoReferencia": empresa.pontoReferencia
-            },
+        if (await service.postFuncionarios({            
             "nomeFuncionario": nome,
             "cpfFuncionario": cpf,
             "telefoneFuncionario": telefone,
