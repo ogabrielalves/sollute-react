@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import ThemeContextProvider from './Context/ThemeContext';
 
+console.log('Maquina 1')
 
 ReactDOM.render(
   <React.StrictMode>
