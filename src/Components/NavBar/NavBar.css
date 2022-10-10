@@ -45,7 +45,7 @@ header {
   justify-content: center;  
 }
 
-selected {
+.selected {
   border-bottom: 3px solid #3E00FF;  
 }
 

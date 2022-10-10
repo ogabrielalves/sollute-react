@@ -20,7 +20,7 @@ function NavBar() {
         </div>
         <div className='divMenu'>
           <ul>
-            <li><selected><a href='#'>Home</a></selected></li>
+            <li><span className='selected'><a href='#'>Home</a></span></li>
             <li><a href='/contact'>Contato</a></li>
           </ul>
         </div>
